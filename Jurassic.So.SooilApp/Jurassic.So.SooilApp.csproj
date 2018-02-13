@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9DC98131-010F-4E1C-8357-107551C7129C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.So.SooilApp</RootNamespace>
+    <AssemblyName>Jurassic.So.SooilApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebRouteConfig.cs" />
+    <Compile Include="Common\SoViewPage.cs" />
+    <Compile Include="Controllers\SearchConfigController.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\SearchHistoryController.cs" />
+    <Compile Include="Controllers\SearchResultConfigController.cs" />
+    <Compile Include="Controllers\TypeAheadController.cs" />
+    <Compile Include="Controllers\WebAppAccountController.cs" />
+    <Compile Include="Controllers\WebAppController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootcss\css\bootstrap-dialog.css" />
+    <Content Include="Content\bootcss\css\bootstrap-dialog.min.css" />
+    <Content Include="Content\bootcss\css\bootstrap-table.css" />
+    <Content Include="Content\bootcss\css\bootstrap-theme.css" />
+    <Content Include="Content\bootcss\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootcss\css\bootstrap.css" />
+    <Content Include="Content\bootcss\css\bootstrap.min.css" />
+    <Content Include="Content\bootcss\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-multiselect.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\caret-left.png" />
+    <Content Include="Content\images\caret-right.png" />
+    <Content Include="Content\images\j_03.png" />
+    <Content Include="Content\images\j_07.png" />
+    <Content Include="Content\images\list_minus.png" />
+    <Content Include="Content\images\list_num1.png" />
+    <Content Include="Content\images\list_num2.png" />
+    <Content Include="Content\images\list_num3.png" />
+    <Content Include="Content\images\list_num4.png" />
+    <Content Include="Content\images\list_num5.png" />
+    <Content Include="Content\images\list_square.png" />
+    <Content Include="Content\images\search\caret-down.png" />
+    <Content Include="Content\images\search\icon_menu.png" />
+    <Content Include="Content\images\search\icon_search.png" />
+    <Content Include="Content\images\yxj_nav.jpg" />
+    <Content Include="Content\images\yxj_top.png" />
+    <Content Include="Content\jqueryui\jquery.ui.crashboard.css" />
+    <Content Include="Content\jqueryui\jquery-ui.css" />
+    <Content Include="Content\jqueryui\jquery-ui.min.css" />
+    <Content Include="Content\jqueryui\jquery-ui.structure.css" />
+    <Content Include="Content\jqueryui\jquery-ui.structure.min.css" />
+    <Content Include="Content\jqueryui\jquery-ui.theme.css" />
+    <Content Include="Content\jqueryui\jquery-ui.theme.min.css" />
+    <Content Include="Content\jstree\jstree.js" />
+    <Content Include="Content\jstree\jstree.min.js" />
+    <Content Include="Content\jstree\themes\default-dark\32px.png" />
+    <Content Include="Content\jstree\themes\default-dark\40px.png" />
+    <Content Include="Content\jstree\themes\default-dark\style.css" />
+    <Content Include="Content\jstree\themes\default-dark\style.min.css" />
+    <Content Include="Content\jstree\themes\default-dark\throbber.gif" />
+    <Content Include="Content\jstree\themes\default\32px.png" />
+    <Content Include="Content\jstree\themes\default\40px.png" />
+    <Content Include="Content\jstree\themes\default\style.css" />
+    <Content Include="Content\jstree\themes\default\style.min.css" />
+    <Content Include="Content\jstree\themes\default\throbber.gif" />
+    <Content Include="Content\toastr\toastr-icon.png" />
+    <Content Include="Content\toastr\toastr.css" />
+    <Content Include="Content\toastr\toastr.js" />
+    <Content Include="Content\toastr\toastr.min.css" />
+    <Content Include="Content\toastr\toastr.min.js" />
+    <Content Include="Content\webapp\global.css" />
+    <Content Include="Content\webapp\layout.css" />
+    <Content Include="Content\webapp\search.css" />
+    <Content Include="Content\webapp\SearchDetail\button.css" />
+    <Content Include="Content\webapp\SearchDetail\detail.css" />
+    <Content Include="Content\webapp\SearchDetail\list.css" />
+    <Content Include="Content\webapp\SearchDetail\panel.css" />
+    <Content Include="Content\webapp\SearchDetail\site.css" />
+    <Content Include="Content\webapp\SearchDetail\tab.css" />
+    <Content Include="Content\webapp\SearchDetail\table.css" />
+    <Content Include="Content\webapp\searchresult.css" />
+    <Content Include="Content\webapp\Signin.css" />
+    <Content Include="Content\webapp\webapp-main.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\fileicons\asm.gif" />
+    <Content Include="images\fileicons\asp.gif" />
+    <Content Include="images\fileicons\avi.gif" />
+    <Content Include="images\fileicons\bat.gif" />
+    <Content Include="images\fileicons\bmp.gif" />
+    <Content Include="images\fileicons\cab.gif" />
+    <Content Include="images\fileicons\cdaudio.gif" />
+    <Content Include="images\fileicons\certificate.gif" />
+    <Content Include="images\fileicons\cfm.gif" />
+    <Content Include="images\fileicons\class.gif" />
+    <Content Include="images\fileicons\cmd.gif" />
+    <Content Include="images\fileicons\com.gif" />
+    <Content Include="images\fileicons\cpp.gif" />
+    <Content Include="images\fileicons\cs.gif" />
+    <Content Include="images\fileicons\csharp.gif" />
+    <Content Include="images\fileicons\css.gif" />
+    <Content Include="images\fileicons\DataSet.gif" />
+    <Content Include="images\fileicons\DateTime.gif" />
+    <Content Include="images\fileicons\db.gif" />
+    <Content Include="images\fileicons\del.gif" />
+    <Content Include="images\fileicons\dll.gif" />
+    <Content Include="images\fileicons\doc.gif" />
+    <Content Include="images\fileicons\docx.gif" />
+    <Content Include="images\fileicons\down.gif" />
+    <Content Include="images\fileicons\eml.gif" />
+    <Content Include="images\fileicons\exe.gif" />
+    <Content Include="images\fileicons\file.gif" />
+    <Content Include="images\fileicons\folder.gif" />
+    <Content Include="images\fileicons\fon.gif" />
+    <Content Include="images\fileicons\gif.gif" />
+    <Content Include="images\fileicons\graph.gif" />
+    <Content Include="images\fileicons\hlp.gif" />
+    <Content Include="images\fileicons\htm.gif" />
+    <Content Include="images\fileicons\html.gif" />
+    <Content Include="images\fileicons\ico.gif" />
+    <Content Include="images\fileicons\idf.gif" />
+    <Content Include="images\fileicons\image.gif" />
+    <Content Include="images\fileicons\images.gif" />
+    <Content Include="images\fileicons\img.gif" />
+    <Content Include="images\fileicons\irc.gif" />
+    <Content Include="images\fileicons\iso.gif" />
+    <Content Include="images\fileicons\jar.gif" />
+    <Content Include="images\fileicons\java.gif" />
+    <Content Include="images\fileicons\jpg.gif" />
+    <Content Include="images\fileicons\js.gif" />
+    <Content Include="images\fileicons\jsp.gif" />
+    <Content Include="images\fileicons\mdb.gif" />
+    <Content Include="images\fileicons\modem.gif" />
+    <Content Include="images\fileicons\mp3.gif" />
+    <Content Include="images\fileicons\mpg.gif" />
+    <Content Include="images\fileicons\mschann.gif" />
+    <Content Include="images\fileicons\msg.gif" />
+    <Content Include="images\fileicons\net.gif" />
+    <Content Include="images\fileicons\netmetting.gif" />
+    <Content Include="images\fileicons\news.gif" />
+    <Content Include="images\fileicons\note.gif" />
+    <Content Include="images\fileicons\pda.gif" />
+    <Content Include="images\fileicons\pdf.gif" />
+    <Content Include="images\fileicons\php.gif" />
+    <Content Include="images\fileicons\picture.gif" />
+    <Content Include="images\fileicons\png.gif" />
+    <Content Include="images\fileicons\pps.gif" />
+    <Content Include="images\fileicons\ppt.gif" />
+    <Content Include="images\fileicons\pptx.gif" />
+    <Content Include="images\fileicons\py.gif" />
+    <Content Include="images\fileicons\rar.gif" />
+    <Content Include="images\fileicons\reg.gif" />
+    <Content Include="images\fileicons\report.gif" />
+    <Content Include="images\fileicons\rm.gif" />
+    <Content Include="images\fileicons\rmv.gif" />
+    <Content Include="images\fileicons\searchen.gif" />
+    <Content Include="images\fileicons\swf.gif" />
+    <Content Include="images\fileicons\ttf.gif" />
+    <Content Include="images\fileicons\txt.gif" />
+    <Content Include="images\fileicons\vb.gif" />
+    <Content Include="images\fileicons\vbs.gif" />
+    <Content Include="images\fileicons\vfp.gif" />
+    <Content Include="images\fileicons\wab.gif" />
+    <Content Include="images\fileicons\wav.gif" />
+    <Content Include="images\fileicons\wmv.gif" />
+    <Content Include="images\fileicons\wri.gif" />
+    <Content Include="images\fileicons\xls.gif" />
+    <Content Include="images\fileicons\xlsx.gif" />
+    <Content Include="images\fileicons\xml.gif" />
+    <Content Include="images\fileicons\zip.gif" />
+    <Content Include="images\password.png" />
+    <Content Include="images\sooil\default_detail.jpg" />
+    <Content Include="images\sooil\noSearchList.png" />
+    <Content Include="images\username.png" />
+    <Content Include="Scripts\ApiServiceFunction.js" />
+    <Content Include="Scripts\app\advancesearch\AdvanceSearch.js" />
+    <Content Include="Scripts\app\advancesearch\SearchItem.js" />
+    <Content Include="Scripts\app\advancesearch\AdvanceSearchService.js" />
+    <Content Include="Scripts\app\di.js" />
+    <Content Include="Scripts\util.js" />
+    <Content Include="Scripts\app\esservice.js" />
+    <Content Include="Scripts\app\base.extend.js" />
+    <Content Include="Scripts\app\baseserivce.js" />
+    <Content Include="Scripts\app\jquery.select.js" />
+    <Content Include="Scripts\app\RecentDates.js" />
+    <Content Include="Scripts\app\searchbar\SearchBar.js" />
+    <Content Include="Scripts\app\searchbar\SearchBarService.js" />
+    <Content Include="Scripts\app\searchdetail\detail.js" />
+    <Content Include="Scripts\app\searchdetail\model.js" />
+    <Content Include="Scripts\app\searchdetail\SearchDetailService.js" />
+    <Content Include="Scripts\app\searchdetail\tab.js" />
+    <Content Include="Scripts\app\searchresult\SearchResultService.Extend.Demo.js" />
+    <Content Include="Scripts\app\serivces\SearchHistoryService.js" />
+    <Content Include="Scripts\app\searchresult\SearchResultDemo.js" />
+    <Content Include="Scripts\app\searchresult\SearchResult.js" />
+    <Content Include="Scripts\app\searchresult\SearchResultService.js" />
+    <Content Include="Scripts\app\util.js" />
+    <Content Include="Scripts\app\vue.extend.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
+    <Content Include="Scripts\bootstrap-paginator.js" />
+    <Content Include="Scripts\bootstrap-paginator.min.js" />
+    <Content Include="Scripts\bootstrap-typeahead.js" />
+    <Content Include="Scripts\app\components\producttypelist.js" />
+    <Content Include="Scripts\app\components\searchbox.js" />
+    <Content Include="Scripts\app\components\searchlist.js" />
+    <Content Include="Scripts\app\vue.2.3.2.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\jquery.ui.crashboard.js" />
+    <Content Include="SearchConfig\SearchResult\segment\sidefilter_default.txt" />
+    <Content Include="SearchConfig\SearchResult\segment\searchitem_default.txt" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\jqueryui\images\" />
+    <Folder Include="Models\" />
+    <Folder Include="Scripts\webapp\" />
+    <Folder Include="SearchConfig\SearchDetail\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Demo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Pdf">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Aspose.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Slides">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Aspose.Slides.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender">
+      <HintPath>..\..\EntityFramework.Profiler-v4.0-Build-4041\Appender\net35\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.AppCenter.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Jurassic.AppCenter.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.Com, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Jurassic.Com.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.CommonModels, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Jurassic.CommonModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.CommonModels.EFProvider, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Jurassic.CommonModels.EFProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.Log4, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Jurassic.Log4.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.WebFrame, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Jurassic.WebFrame.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\..\Lib\bin\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet4Mono.Extensions">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\NuGet4Mono.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.2.1100\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.EnterpriseServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.ServiceModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.EntityFramework">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.ServiceModel.DomainServices.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Hosting">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.ServiceModel.DomainServices.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Server">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.ServiceModel.DomainServices.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.ServiceModel.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.DynamicData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Terradue.ServiceModel.Ogc">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\Terradue.ServiceModel.Ogc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\..\..\..\..\..\01GeoTopic1.0\开发库\04编码\项目模板\Jurassic.So.GeoTemplate\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_Data\CustomStrings.en-US.resx" />
+    <EmbeddedResource Include="App_Data\CustomStrings.zh-CN.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\changepassword.cshtml" />
+    <Content Include="Views\Account\forgotpassword.cshtml" />
+    <Content Include="Views\Account\login.cshtml" />
+    <Content Include="Views\Account\login.mobile.cshtml" />
+    <Content Include="Views\Account\resetpassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jurassic.So.Application\Jurassic.So.Application.csproj">
+      <Project>{13cd6875-8cbf-4703-9621-f8f8ab2dde88}</Project>
+      <Name>Jurassic.So.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jurassic.So.Core\Jurassic.So.Core.csproj">
+      <Project>{20ed1e01-b987-43b7-9562-1b9e05064f15}</Project>
+      <Name>Jurassic.So.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jurassic.So.Domain\Jurassic.So.Domain.csproj">
+      <Project>{6fa9b3b5-720c-4b39-a29a-e6e195ace199}</Project>
+      <Name>Jurassic.So.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jurassic.So.Oracle\Jurassic.So.Oracle.csproj">
+      <Project>{acfaf953-14fc-4d32-a552-cab289f3396d}</Project>
+      <Name>Jurassic.So.Oracle</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebApp\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\InfoBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_WebAppLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootcss\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootcss\css\bootstrap.css.map" />
+    <Content Include="Content\bootcss\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootcss\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootcss\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootcss\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Setting_Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Setting_AdvancedSearch.cshtml" />
+    <Content Include="Views\Shared\Setting_Range.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\toastr\readme.md" />
+    <Content Include="Content\toastr\toastr.less" />
+    <Content Include="Content\toastr\toastr.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebApp\SearchResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebApp\SearchIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebApp\SearchResultDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebApp\SearchResult2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_SoAppLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SoSearch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebApp\SearchResult3.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WebApp\SearchResult4.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SoLoginBar.cshtml" />
+    <Content Include="App_Data\appfunctions.json" />
+    <Content Include="App_Data\approles.json" />
+    <Content Include="Views\SearchConfig\index.cshtml" />
+    <Content Include="Views\SearchResultConfig\index.cshtml" />
+    <Content Include="Views\SearchConfig\SearchResultDetailConfig.cshtml" />
+    <Content Include="Views\SearchResultConfig\SideFilterConfig.cshtml" />
+    <Content Include="Views\SearchResultConfig\SideFilterConfigEdit.cshtml" />
+    <None Include="Views\Shared\SoSearchBar.cshtml" />
+    <Content Include="Views\WebApp\AdvanceSearch.cshtml" />
+    <Content Include="Views\WebAppAccount\login.cshtml" />
+    <Content Include="Views\WebApp\SearchResultDetailold.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12700</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12700/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

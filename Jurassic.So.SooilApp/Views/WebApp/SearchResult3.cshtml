@@ -1,0 +1,3732 @@
+﻿@{
+    ViewBag.Title = "SearchResult2";
+    Layout =null;
+    var urlPrefix = "http://zuanjing.yooso.com.cn/";
+}
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+    <!-- 页面编码 -->
+    <meta charset="utf-8">
+    <!-- 强制使用ie高版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 极速核，增加标签 -->
+    <meta name="renderer" content="webkit">
+    <!-- 控制缓存 -->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+
+  
+
+    <title>搜索-专题库</title>
+    <link href="@urlPrefix/static/custom/css/glogbal.css" rel="stylesheet" type="text/css" />
+    <link href="@urlPrefix/static/custom/css/search.css" rel="stylesheet" type="text/css" />
+    <link href="@urlPrefix/static/custom/css/search_default.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.11.1.js"></script>
+    @*<script language="JavaScript" type="text/javascript" src="@urlPrefix/static/custom/js/jquery-1.8.3.min.js"></script>*@
+    <script language="javascript" type="text/javascript" src="@urlPrefix/static/custom/js/jQselect.js"></script>
+    <script language="javascript" type="text/javascript" src="@urlPrefix/static/custom/js/search.js"></script>
+    
+    @*<script src="~/Scripts/app/util.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="~/Scripts/app/vue.extend.js"></script>
+    <script src="~/Scripts/app/apiservice.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/app/searchresult/SearchResult3.js"></script>*@
+    
+    <script>
+    function login() {
+        window.location.href = "/login?returnpath=" + "http://zuanjing.yooso.com.cn/search?t=0?p=1?w=aa";
+    }
+
+    </script>
+
+  
+    @*<script language="javascript" type="text/javascript"  src="@urlPrefix/static/custom/js/jquery.select.js"></script>*@
+   <script type="text/javascript">
+    function openAdvanced() {
+        window.CrashBoard.show({
+            id:"advanced",
+            url:"/search/openadvanced",
+            maskable : true, //是否绘制遮布
+            width : '800px',//宽度
+            height : '420px',//高度
+            callback : function(data) {
+            },
+            title:'高级搜索'
+        });
+    }
+    function check() {
+        var valueI = document.getElementById('searchContentId').value;
+        if(valueI.replace(/(^\s+)|(\s+$)/g,'')==""){
+            return false;
+        }
+    }
+    function sub() {
+        var aaa = $(".select_showbox").val();
+        alert(aaa);
+        var op = $("#r").val();
+        alert(op);
+    }
+    //点击空白隐藏
+    $(function () {
+        $(document).click(function (e) {
+            if (e.target.className == "yxj_eng") {
+                return false;
+            } else {
+                $(".select_option").hide();
+            }
+        });
+        $("#choose").val("0");
+
+        $.ajax({
+
+            type: "POST",
+            crossDomain: true,
+            url: "@urlPrefix/words/getTop5HotWord",
+            success: function(data) {
+                for(var i = 0; i < data.length; i++){
+                    var result = "<a href='/search?t=0&p=1&w="+data[i].word+"' title='"+data[i].word+"'>"+data[i].word+"</a>";
+                    $("#hotword").append(result);
+                }
+            }
+        });
+    })
+
+    function handle(){
+        var txtValue = $("#searchContentId").val().replace("'","");
+
+        $.ajax({
+            type: "POST",
+            url: "/words/wordsearch",
+            data: {"word": txtValue},
+            success: function(data) {
+                $("#enlist").html("");//刷新下拉列表
+                if(data.length > 0){
+                    entryList = data;
+                    for(var i = 0; i < data.length; i++){
+                        var result = "<li><a href='/search?t=0&p=1&w="+data[i].word+"' title='"+data[i].word+"'><p>"+subString(data[i].word, 40, true)+"</p></a></li>";
+                        $("#enlist").append(result);
+                    }
+                    $(".yxj_tc li").mouseover(function(e) {
+                        $(this).addClass("on").siblings().removeClass("on");
+                    });
+                }
+                $(".yxj_tc").show();
+            }
+        });
+        //放大镜图标隐藏
+//        if(txtValue==''){
+//            $('#icon-search').show();
+//        }else{
+//            $('#icon-search').hide();
+//        }
+    }
+    //点击搜索框时隐藏放大镜图标
+    $(function () {
+        $('#searchContentId').focus(function () {
+            $('#icon-search').hide();
+        })
+        $('#searchContentId').blur(function () {
+            $('#icon-search').show();
+        })
+    });
+    //------------下拉框键盘上下移动效果-----------------
+
+    $(document).keydown(function(e) {
+        var len=$(".yxj_tc li").length;
+        if(event.keyCode==40){
+            var li=$(".yxj_tc .on");
+            var num=li.index();
+            if(num==-1){
+                $(".yxj_tc li").first().addClass("on");
+                $(".yxj_text").val($(".yxj_tc li").first().text());
+            }
+            if(num==len-1){
+                return false;
+            }
+            else{
+                li.removeClass("on");
+                li.next().addClass("on");
+                var text=$(".yxj_tc .on a").text();
+                $(".yxj_text").val(text);
+            }
+        }
+        if(event.keyCode==38){
+            var li=$(".yxj_tc .on");
+            var num=li.index();
+            if(num<1){
+                return false;
+            }
+            else{
+                li.removeClass("on");
+                li.prev().addClass("on");
+                var text=$(".yxj_tc .on a").text();
+                $(".yxj_text").val(text);
+            }
+        }
+    });
+
+    //计算字符串长度
+
+    //截取字符串 包含中文处理
+    //(串,长度,增加...)
+    function subString(str, len, hasDot)
+    {
+        var newLength = 0;
+        var newStr = "";
+        var chineseRegex = /[^\x00-\xff]/g;
+        var singleChar = "";
+        var strLength = str.replace(chineseRegex,"**").length;
+        for(var i = 0;i < strLength;i++)
+        {
+            singleChar = str.charAt(i).toString();
+            if(singleChar.match(chineseRegex) != null)
+            {
+                newLength += 2;
+            }
+            else
+            {
+                newLength++;
+            }
+            if(newLength > len)
+            {
+                break;
+            }
+            newStr += singleChar;
+        }
+
+        if(hasDot && strLength > len)
+        {
+            newStr += "...";
+        }
+        return newStr;
+    }
+
+    $(document).click(function (e) {
+        $("#enlist").html("");
+    });
+
+
+
+</script>
+    
+<style>
+    .gf_xs {
+        width: 88px;
+        background: #484848;
+        position: absolute;
+        left: 186px;
+        height: 66px;
+        z-index: 1;
+    }
+
+    .gf_xs1 {
+        width: 88px;
+        margin-left: 8px;
+        color: rgb(192, 192, 192);
+    }
+
+    .gf_xs1 h3 a {
+        font-size: 13px;
+        line-height: 26px;
+        margin-bottom: 10px;
+    }
+
+    .gf_xs1 h4 a {
+        font-size: 13px;
+        line-height: 12px;
+        margin-bottom: 10px;
+    }
+
+    .gf_xs1 h3 a:hover {
+        background: url(/static/custom/images/yxj_nav.jpg) repeat-x left 22px;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .gf_xs1 h4 a:hover {
+        background-image: url(http://www.codefans.net/article/upload/201310/102848.gif);
+        background-repeat: repeat-x;
+        background-position: center;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    @@media (min-width: 1500px) {
+        .gf_xs {
+            width: 86px;
+        }
+
+        .gf_xs1 {
+            width: 90px;
+        }
+    }
+
+    @@media screen and (-webkit-min-device-pixel-ratio:0) {
+        .gf_xs1 {
+            width: 92px;
+        }
+    }
+
+    @@media (min-width: 1280px) and (max-width:1499px) {
+        .gf_xs {
+            width: 88px;
+        }
+
+        .gf_xs1 {
+            width: 88px;
+        }
+    }
+</style>
+    <link href="@urlPrefix/static/custom/css/jquery.ui.crashboard.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@urlPrefix/static/custom/js/jquery.ui.crashboard.js"></script>
+    <script type="text/javascript">
+
+    $(function () {
+        $.ajax({
+            type: "POST",
+            crossDomain: true,
+            url: "@urlPrefix/words/getTop5HotWord",
+            success: function(data) {
+                for(var i = 0; i < 5; i++) {
+                    var num = i+1;
+                    var result = "<a href='/search?t=0&p=1&w=" + data[i].word + "'><li><span><img src='/static/custom/images/list_num"+num + ".png' /></span>" + data[i].word + "</li></a>"
+                    $("#hotwords").append(result);
+                }
+            }
+        });
+    })
+    </script>
+</head>
+<body>
+    <!--导航开始-->
+    <div class="yxj_nav">
+        <div class="boxcenter" style="margin:0 auto;overflow:visible;">
+           
+            @*<ul>
+                <li><a href="http://www.petropub.com.cn">石油社官网</a></li>
+                <li><span>|</span></li>
+                <li><a id="store" href="http://store.yooso.com.cn">中油书店</a></li>
+
+
+                <li onmouseover="b1.style.display='block'" onmouseout="b1.style.display='none'">
+                    <a href="javascript:void(0);">石油知识库</a>
+                    <div class="gf_xs" id="b1" style="display:none">
+                        <div class="gf_xs1">
+                            <h3><a id="zuanjing" href="http://zuanjing.yooso.com.cn">钻井知识库</a></h3>
+                            <h3><a id="kantan" href="http://kantan.yooso.com.cn/">勘探知识库</a></h3>
+                        </div>
+                    </div>
+                </li>
+                <li><a id="baike" href="http://baike.yooso.com.cn/">石油百科</a></li>
+                <div class="yxj_cd" style="float:left;">
+                    <li><a id="biaozhun" href="http://bz.yooso.com.cn">石油标准</a></li>
+                    <li><a id="qikan" href="http://www.petroj.cn/">石油期刊</a></li>
+                    <li><a id="fanyi" href="http://fanyi.yooso.com.cn">石油翻译</a></li>
+                    <li><span>|</span></li>
+                </div>
+            </ul>
+            <a id="www" href="http://www.yooso.com.cn">
+                <img class="yxj_logo" src="@urlPrefix/static/custom/images/yxj_logo2.png" />
+            </a>*@
+            <div class="yxj_admin ">
+
+
+                <h1><a href="javascript:void(0)" onclick="login()">登录</a></h1>
+                <h1><a href="@urlPrefix/register">注册</a></h1>
+
+
+            </div>
+        </div>
+    </div>
+  
+    <!--头部开始-->
+    @{
+        Html.RenderPartial("SoSearchBar");
+     }
+    <script src="~/Scripts/app/jquery.select.js"></script>
+    <!-- 页面 -->
+    <div class="cf_nr1" id="pagecontent">
+        <!-- 导航 -->
+        <div class="cf_sy">
+            <img src="@urlPrefix/static/custom/images/breadcrumbs_point.png" />
+            <span><a href="#">首页</a>\<h5>资源导航</h5></span>
+        </div>
+        <!-- 内容 -->
+        <div class="cf_tx">
+            <!-- 内容左侧 -->
+            <div class="cf_x_g1">
+                <!---------------------应用分类------------------------>
+                <div class="cf_x_g-1">
+                    <div class="cf_yy-1"><span>应用分类</span></div>
+                </div>
+                <div class="cf_x_g-1">
+                    <div class="subNavBox">
+
+                        <input id="fac" type="hidden" value="钻井事故与复杂问题" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=aa&c=钻井事故与复杂问题&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井事故与复杂问题(22)">
+
+
+                                钻井事故与...&nbsp;
+
+
+
+
+                                (22)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井　漏&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井　漏">
+
+
+
+                                    井　漏
+
+
+
+                                    (5)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井下落物事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下落物事故">
+
+
+
+                                    井下落物事故
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井喷事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井喷事故">
+
+
+
+                                    井喷事故
+
+
+
+                                    (5)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=卡钻事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="卡钻事故">
+
+
+
+                                    卡钻事故
+
+
+
+                                    (3)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=固井复杂问题与事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井复杂问题与事故">
+
+
+                                    固井复杂问...&nbsp;
+
+
+
+
+                                    (8)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=测井事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="测井事故">
+
+
+
+                                    测井事故
+
+
+
+                                    (2)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻具断落事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻具断落事故">
+
+
+
+                                    钻具断落事故
+
+
+
+                                    (4)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=防斜打直井&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="防斜打直井">
+
+
+
+                                    防斜打直井
+
+
+
+                                    (2)
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用地质" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=aa&c=钻井常用地质&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用地质(2)">
+
+
+
+                                钻井常用地质
+
+
+
+                                (2)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=中国地质简介&s=&f=钻井常用地质&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="中国地质简介">
+
+
+
+                                    中国地质简介
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=区域地质及岩石特性&s=&f=钻井常用地质&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="区域地质及岩石特性">
+
+
+                                    区域地质及...&nbsp;
+
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=岩石性质&s=&f=钻井常用地质&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="岩石性质">
+
+
+
+                                    岩石性质
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用数据" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=aa&c=钻井常用数据&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用数据(0)">
+
+
+
+                                钻井常用数据
+
+
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=单位换算数据（表）&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="单位换算数据（表）">
+
+
+                                    单位换算数...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=卷筒和绳筒的容量（IADC）&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="卷筒和绳筒的容量（IADC）">
+
+
+                                    卷筒和绳筒...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=固井水泥数据&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井水泥数据">
+
+
+
+                                    固井水泥数据
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=直径与容积关系&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="直径与容积关系">
+
+
+                                    直径与容积...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻头与套管间隙标准&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻头与套管间隙标准">
+
+
+                                    钻头与套管...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=风速及风压表&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="风速及风压表">
+
+
+
+                                    风速及风压表
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用材料" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=aa&c=钻井常用材料&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用材料(6)">
+
+
+
+                                钻井常用材料
+
+
+
+                                (6)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=常用材料物理化学性质&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="常用材料物理化学性质">
+
+
+                                    常用材料物...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=振动筛网、旋流分离器、水龙带&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="振动筛网、旋流分离器、水龙带">
+
+
+                                    振动筛网、...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=油井水泥及水泥外加剂&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="油井水泥及水泥外加剂">
+
+
+                                    油井水泥及...&nbsp;
+
+
+
+
+                                    (6)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=焊条、焊料、电气焊工具&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="焊条、焊料、电气焊工具">
+
+
+                                    焊条、焊料...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=金刚石及硬质合金&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="金刚石及硬质合金">
+
+
+                                    金刚石及硬...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井常用皮带及链条&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井常用皮带及链条">
+
+
+                                    钻井常用皮...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井常用胶管、玻璃钢管及橡胶管密封圈&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井常用胶管、玻璃钢管及橡胶管密封圈">
+
+
+                                    钻井常用胶...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井常用钢材机械性能&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井常用钢材机械性能">
+
+
+                                    钻井常用钢...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井油料&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井油料">
+
+
+
+                                    钻井油料
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井绳类&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井绳类">
+
+
+
+                                    钻井绳类
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用计算" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=aa&c=钻井常用计算&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用计算(12)">
+
+
+
+                                钻井常用计算
+
+
+
+                                (12)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=事故与复杂情况计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="事故与复杂情况计算">
+
+
+                                    事故与复杂...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井控计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井控计算">
+
+
+
+                                    井控计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井架基础的计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井架基础的计算">
+
+
+                                    井架基础的...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井眼轨迹可视化研究&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井眼轨迹可视化研究">
+
+
+                                    井眼轨迹可...&nbsp;
+
+
+
+
+                                    (9)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井身质量计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井身质量计算">
+
+
+
+                                    井身质量计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=交流电&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="交流电">
+
+
+
+                                    交流电
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=其它计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="其它计算">
+
+
+
+                                    其它计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=几何计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="几何计算">
+
+
+
+                                    几何计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=参数优选计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="参数优选计算">
+
+
+
+                                    参数优选计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=固井计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井计算">
+
+
+
+                                    固井计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=地层压力计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="地层压力计算">
+
+
+
+                                    地层压力计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=定向井计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="定向井计算">
+
+
+
+                                    定向井计算
+
+
+
+                                    (3)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=水力参数计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="水力参数计算">
+
+
+
+                                    水力参数计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=浮力计算与系数表&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="浮力计算与系数表">
+
+
+                                    浮力计算与...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=直流电&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="直流电">
+
+
+
+                                    直流电
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=管柱计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="管柱计算">
+
+
+
+                                    管柱计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻机提升力学计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻机提升力学计算">
+
+
+                                    钻机提升力...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井液" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=aa&c=钻井液&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井液(6)">
+
+
+
+                                钻井液
+
+
+
+                                (6)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井下复杂情况下的钻井液技术&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下复杂情况下的钻井液技术">
+
+
+                                    井下复杂情...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=体系与类型&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="体系与类型">
+
+
+
+                                    体系与类型
+
+
+
+                                    (5)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=性能测试方法与配套仪器&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="性能测试方法与配套仪器">
+
+
+                                    性能测试方...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=功用组成&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="功用组成">
+
+
+
+                                    功用组成
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=深井钻井液技术简介&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="深井钻井液技术简介">
+
+
+                                    深井钻井液...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=配浆材料与处理剂&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="配浆材料与处理剂">
+
+
+                                    配浆材料与...&nbsp;
+
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井液计算&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井液计算">
+
+
+
+                                    钻井液计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井设备与工具" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=aa&c=钻井设备与工具&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井设备与工具(26)">
+
+
+                                钻井设备与...&nbsp;
+
+
+
+
+                                (26)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=事故处理工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="事故处理工具">
+
+
+
+                                    事故处理工具
+
+
+
+                                    (3)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井下动力钻具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下动力钻具">
+
+
+
+                                    井下动力钻具
+
+
+
+                                    (4)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=井下工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下工具">
+
+
+
+                                    井下工具
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=固井&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井">
+
+
+
+                                    固井
+
+
+
+                                    (17)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=地层测试工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="地层测试工具">
+
+
+
+                                    地层测试工具
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=套管开窗侧钻工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="套管开窗侧钻工具">
+
+
+                                    套管开窗侧...&nbsp;
+
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=定向井工具及仪器&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="定向井工具及仪器">
+
+
+                                    定向井工具...&nbsp;
+
+
+
+
+                                    (8)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=常用井口工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="常用井口工具">
+
+
+
+                                    常用井口工具
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井井控&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井井控">
+
+
+
+                                    钻井井控
+
+
+
+                                    (4)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井仪器仪表&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井仪器仪表">
+
+
+
+                                    钻井仪器仪表
+
+
+
+                                    (12)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井取心&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井取心">
+
+
+
+                                    钻井取心
+
+
+
+                                    (3)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻井管材&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井管材">
+
+
+
+                                    钻井管材
+
+
+
+                                    (4)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻头及喷嘴&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻头及喷嘴">
+
+
+
+                                    钻头及喷嘴
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=aa&c=钻机&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻机">
+
+
+
+                                    钻机
+
+
+
+                                    (3)
+
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+
+
+
+
+                    </div>
+                </div>
+                <!---------------------资源分类------------------------>
+                <div class="cf_x_g-1">
+                    <div class="cf_yy-1"><span>资源分类</span></div>
+                    <div class="cf_yy-3">
+                        <ul>
+                            <li><a href="javascript:void(0);" onclick="submit_tvb('book')">出版物(0)</a></li>
+
+                            <li><a href="javascript:void(0);" onclick="submit_tvb('topic')">知识点(36)</a></li>
+                            <li><a href="javascript:void(0);" onclick="submit_tvb('standard')">标&nbsp;准(0)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!---------------------热搜词汇------------------------>
+
+
+                <div class="cf_rs">
+                    <div class="cf_rs-1">
+                        <div class="cf_rs-2">热搜词汇</div>
+                        <div class="cf_sz">
+                            <ul id="hotwords"></ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 内容右侧 -->
+            </div>
+
+            <div class="cf_t_m">
+                <div class="cf_d_h">
+                    <!---------------------详细结果信息------------------------>
+                    <div class="cf_b_t">
+                        <div class="cf_wei">找到相关结果约36条，用时8.826s</div>
+                        <div class="cf_xin" style="margin-left: inherit;" onmouseover="a2.style.display='block'" onmouseout="a2.style.display='none'">
+                            <div class="cf_paixu-1" id="divCon1" style="width: 74px;"><a href="#" id="ord">按相关度排序</a></div>
+                            <div class="cf_xin-1"><a href="#"><img src="@urlPrefix/static/custom/images/icon_filter.png"></a></div>
+                        </div>
+                        <div class="cf_yc1" id="a2" style="display:none; width: auto;" onmouseover="style.display='block'" onmouseout="style.display='none'">
+                            <ul>
+                                <li style="margin-top:0px;"><a id="byCognate" href="javascript:void(0);" onclick="onSort(0)" style="color: #ED6236;">按相关度排序</a></li>
+                                <li><a id="byTime" href="javascript:void(0);" onclick="onSort(1)">按时间排序</a></li>
+                            </ul>
+                        </div>
+                        <div class="cf_paixu" id="cf_paixu">
+                            <div class="cf_xp">
+                                <ul class="cf_paixu-2-1" style="margin-top: -30px;width: auto;margin-left: -10px;padding-top: 13px;" id="pagination-dom1">
+                                    <li>
+                                        <span onclick="refreshpage(1)" style="cursor: pointer; font-size: 14px">首页</span>
+                                        <a aria-label="Previous" style="cursor: pointer" onclick="refreshpage(0)"><img src="@urlPrefix/static/custom/images/caret-left.png"></a>
+                                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <li class="cf_paixu-2 li a">
+                                        <a onclick="refreshpage(1)" style="cursor: pointer">1</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="1" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(2)" style="cursor: pointer">2</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="2" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(3)" style="cursor: pointer">3</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="3" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(4)" style="cursor: pointer">4</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="4" />
+
+
+
+
+
+
+
+
+
+                                    <li>
+                                        <a aria-label="Next" style="cursor: pointer" onclick="refreshpage(2)"><img src="@urlPrefix/static/custom/images/caret-right.png"></a>
+                                        <span onclick="refreshpage(4)" style="cursor: pointer; font-size: 14px">尾页</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/12312">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                不稳定流动方程的应用
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=紊流">紊流</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=测试数据">测试数据</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=aof">aof</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=紊流系数">紊流系数</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=直角坐标系">直角坐标系</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=气井">气井</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            中, B与稳定流情形意义相同， A是时间的函数，其表达式如下：写成压力平方的形式，为：下面讨论紊流或非达西流对完井效率的影响。参考文献[ 3 ]提出了用来预测由于重新射孔而改善气井流入动态的方法，并且对紊流的影响程度的大小也提出了判断方法。为了定量描述紊流对总压降的影响，参考文献[ 3 ]建议把考虑紊流影响的<font color=red>AA</font>值与稳定的A ＇的值进行比较。根据方程式（ 4 - 15b ） ：根据方程式（ 4 - 15d ） ：以上例子中，计算出的<font color=red>AA</font>/A ＇值表明紊流影响十分明显，而增加射孔段长度对绝对无阻流量AOF的影响是很大的。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/6966">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                通过短时流动测试预测气井产能
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=计算">计算</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=气井">气井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=middot">middot</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=流动">流动</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=流动测试">流动测试</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=截距">截距</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            为预测气井产能或流入动态，一般要求测试很长时间才能达到稳定状态。下面的公式可用来计算达到稳定所需要的时间：在低渗透气藏中，往往需要更长的测试时间，尤其是在井的泄气面积很大的时候。从N个不稳定流动测试数据通过最小二乘法可确定<font color=red>AA</font>和BB ：根据每次测量得到的p值，可以计算出<font color=red>AA</font>和BB的值，而根据最长流动测试时间点计算得到的BB值最具有代表性。0.11889 psia 2 / ( 10 3 ft 3 / d ) 2 ,于是计算流入动态的稳定流动方程为式中， p的单位为psia ， q的单位为10 3 ft 3 / d 。用压力平方方法计算的气井流入动态响应如图4 - 36所示,计算方程如下：图4 - 36用压力平方法计算的流入动态响应。试计算：渗透率k和表皮系数S .图流入动态曲线。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/9121">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                液力传动元件的类比设计
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=叶片">叶片</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=工作">工作</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=传动">传动</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=偶合">偶合</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=环流">环流</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=变矩">变矩</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            液力传动元件（偶合器或变矩器）的设计方法有两种：一是根据工作机提出的要求，利用流体力学和流体机械的基本原理，进行一系列的理论计算，确定出可以满足工作性能要求的循环圆形状、尺寸及其他几何参数，称作水力计算方法。水力设计方法一般只在选型资料不足或不满足工作机要求，或为探求更新型液力传动元件时才采用。但水力设计往往与实际情况有较大的出入，计算结果必须经过模型试验，反复修改设计，才能逐步完善，设计周期很长。按照上述相同的方法，可以作出内、外环流线<font color=red>aa</font> 、 ee及任何辅助流线处叶片的平面展开图，求得任何流线处叶片的进、出口结构角，从而找出叶片结构角的变化范围。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/8281">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                油井水泥降失水剂研究现状
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=胶乳">胶乳</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=微粒材料">微粒材料</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=水泥浆">水泥浆</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=共聚物">共聚物</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=天然高分子">天然高分子</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=磺酸盐">磺酸盐</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            国外对油井水泥降失水剂的研究最早可追溯到40年代，经过几十年的发展，现已形成多种系列产品。国外开发的胶乳产品有：哈里伯顿公司开发的Latex 2000胶乳、 BJ公司开发的BA-86L胶乳、斯伦贝谢公司开发的D500 、 D600 、 D700系列胶乳等。长江大学赵林开发的丁苯胶乳水泥浆体系室内研究结果为：胶乳掺量10% ～ 20% ，最佳掺量为15% ，失水可控制在100 ～ 200mL ，配合降失水剂失水可控制在50mL以下，胶乳掺入水泥浆后对水泥浆的流变性能影响不大，同时改善了水泥石的力学性能，抗压强度降低，抗拉强度增加。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/6969">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                层流—惯性流与紊流分析
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=井筒">井筒</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=流动">流动</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=压力形式">压力形式</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=carter">carter</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=层流">层流</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=经验法">经验法</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            常用的Rawlins和Schellhardt产能公式（ 4 -。是依靠经验法得到的,但也与通过理论推导建立的产能公式（ 4 -。也称Δ2或LIT ( p。假定气藏中的流动为层流稳定流动（拟稳态） ，将式（ 4 -。相结合可得如下方程:或：考虑表皮系数S和惯性紊流影响Dq ，上式可写成：因此， Houpeurt。得:在6.903h后，井筒储集效应可以忽略，此时不稳定流的解析解可应用来求解储层参数。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/11640">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                               
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=计算">计算</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=相关关系">相关关系</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=黏度">黏度</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=流体">流体</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=油管">油管</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=调整">调整</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            此法广泛应用在石油工业中，并被大多数人认可。此法的步骤是:用方程( C-1 ）的逐次逼近法，用下列给出的方法计算垂直压力横向分布。计算气体平均密度:估算流体混合物的黏度:估算流体混合物的表面张力:计算流体黏度:从图C - 2中找CNL。计算表面流体速度:式中A — —油管的横截面积， ft 2 2。计算流体速度:确定表面气体速度v ( ft / s ) :计算气体速度:计算下列参数。用两种方法计算平均压力下两相混合物的平均密度,并使用最大：图相关：式中V为游离气的体积， V ＝ GOR-R 。如果计算出的压力横向分布是迭代的，那么流体特性和压力梯度计算结果就是冗长，写下计算机程序最方便。油表面张力调整系数0.890。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/8872">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                抗盐水泥浆体系的研究开发
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=水泥浆">水泥浆</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=盐水">盐水</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=影响">影响</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=泥浆技术">泥浆技术</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=共聚物">共聚物</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=泥浆">泥浆</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            盐膏层是盐岩地层和膏盐地层的统称，广义上还包含盐水层。中国大陆钻探发现的盐膏层分布范围广泛，塔里木、江汉、四川、胜利、中原、华北、新疆、青海、长庆等油田都曾有钻遇盐膏层时发生卡钻、套管挤毁，甚至油井报废的恶性事故报道。从目前统计的资料来看，盐膏层主要分布在第三系、石炭系和寒武系地层，分属泻湖陆相沉积和滨海相沉积。含盐量( NaCl )在15%以上(也有指18%以上)的水泥浆，包括饱和盐水水泥浆和过饱和盐水水泥浆，称为高含盐水泥浆。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/4608">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                测量仪器
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=照相">照相</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=测量">测量</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=胶片">胶片</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=定时器">定时器</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=传感器">传感器</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井液">钻井液</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            单点照相测斜仪是一种操作简单、使用方便、测量精确的井斜、方位和工具面角测量仪器。它的作用在于控制照相总成的照相时间和曝光时间，有电子定时器、运动传感器和无磁传感器等几种控制机构。— —作用及规格：无磁传感器与运动传感器一样，也是一种不受时间限制的照相控制装置，它具有不进入无磁钻铤不照相的特点，操作简单，使用方便。多点照相测斜仪的类型较多，但是，目前国内普遍使用的多点照相测斜仪有“东方人”公司的“ R ”型和“ E ”型，斯帕里森公司的“ A ” ， “ B ”型和国产CDX-1型多点照相测斜仪。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/16187">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                钻井工程计价标准的标准化
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井工程">钻井工程</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=油田">油田</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=单价">单价</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=编制方法">编制方法</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=工程造价">工程造价</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=工程量">工程量</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            1998 — 1999年石油工业发生重大重组改制，部分油田进行了钻井定额修订。以2000年关联交易结算水平为基础，中国石化和中国石油分别重新组织编制钻井工程预算定额，由企业内部直接费的定额扩展到全成本定额，增加了企业管理费、风险费、利润、税金。2001年中国石化完成胜利、中原、江苏、河南、滇黔桂等5个油田钻井工程预算定额编制。建立起全过程钻井工程计价标准体系后，还需要建立起配套的全过程钻井工程计价方法体系。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/12284">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                稳态紊流
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=紊流">紊流</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=气井">气井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=垂直井">垂直井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=影响">影响</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=井筒">井筒</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=渗透率">渗透率</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            上面的稳态流动计算方法是建立在地层中没有发生紊流，且井筒周围地层没有受到伤害的前提下的。当考虑紊流影响时，用压力平方和拟压力表示的稳态紊流方程为：式中Dq — —与产量有关的表皮系数。表紊流对垂直井产能的影响。
+                        </div>
+                    </div>
+
+
+                    <!-- 分页 -->
+                    <div class="cf_xp">
+                        <div class="cf_paixu-2-2">
+                            <input type="hidden" value="10" id="pageSize" />
+                            共36条记录，共4页，当前第<span style="color: red">1</span>页。
+                        </div>
+                        <div class="cf_xp">
+                            <ul class="cf_paixu-2-1" style="margin-top: 0px;width: auto;" id="pagination-dom">
+                                <li>
+                                    <span onclick="refreshpage(1)" style="cursor: pointer; font-size: 14px">首页</span>
+                                    <a aria-label="Previous" style="cursor: pointer" onclick="refreshpage(0)"><img src="@urlPrefix/static/custom/images/caret-left.png"></a>
+                                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <li class="cf_paixu-2 li a">
+                                    <a onclick="refreshpage(1)" style="cursor: pointer">1</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="1" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(2)" style="cursor: pointer">2</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="2" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(3)" style="cursor: pointer">3</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="3" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(4)" style="cursor: pointer">4</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="4" />
+
+
+
+
+
+
+
+
+
+                                <li>
+                                    <a aria-label="Next" style="cursor: pointer" onclick="refreshpage(2)"><img src="@urlPrefix/static/custom/images/caret-right.png"></a>
+                                    <span onclick="refreshpage(4)" style="cursor: pointer; font-size: 14px">尾页</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!----画面存储区域--------------------------------->
+
+    <input type="hidden" id="pattern" value="" />
+    <input type="hidden" id="top" value="0" />
+    <input type="hidden" id="pageN" value="1" />
+    <input type="hidden" id="pageT" value="4" />
+    <input type="hidden" id="word" value="aa" />
+    <input type="hidden" id="category" value="" />
+    <input type="hidden" id="source" value="" />
+    <input type="hidden" id="order" value="" />
+    <input type="hidden" id="fath" value="" />
+    <input type="hidden" id="iTp" value="" />
+    <input type="hidden" id="adv1" value="" />
+    <input type="hidden" id="adv2" value="" />
+    <input type="hidden" id="adv3" value="" />
+    <input type="hidden" id="adv4" value="" />
+    <input type="hidden" id="all" value="0" />
+
+
+
+    <div class="cf_foot">
+        <div class="cf_foot-1">
+            <div class="cf_foot-z">Copyright 石油工业出版社 2010-2015 All Rights Reserved</div>
+            <div class="cf_foot-y">地址：北京市安定门外安华里二区一号楼    京ICP备0800427号-1</div>
+        </div>
+    </div>
+
+
+</body>
+</html>

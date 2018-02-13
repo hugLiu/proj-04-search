@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>@ViewBag.Title</title>
+    <link href="/Content/bootcss/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/toastr/toastr.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/webapp/global.css" rel="stylesheet">
+    <link href="/Content/webapp/layout.css" rel="stylesheet">
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/Scripts/jquery-1.11.1.js"></script>
+    @*<script src="/Scripts/jquery-1.11.2.min.js"></script>*@
+    @*<script src="/Scripts/jquery.cookie.js"></script>*@
+    <script src="/Scripts/knockout-3.0.0.js" type="text/javascript"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/Scripts/bootcss/bootstrap.min.js"></script>
+    <script src="/Content/toastr/toastr.js" type="text/javascript"></script>
+    <script src="/Scripts/VM/SearchResultHistoryVM.js"></script>
+    <!-- 框架自定义扩展 -->
+    <script src="/Scripts/WebApp_1.0.js"></script>
+    <script src="/Scripts/ApiServiceFunction.js"></script>
+    
+
+    @*@Styles.Render("~/Content/bootcss/css/WebAppCss")
+        @Scripts.Render("~/Scripts/WebAppJs")*@
+    <script type="text/javascript">
+        var Sooil_Info_SelectCollection = '@Html.Str("S_CM_Info_SelectCollection")';
+        var Sooil_Info_SelectCollectionGroup = '@Html.Str("S_CM_Info_SelectCollectionGroup")';
+        var S_SR_Link_Undated = "@Html.Str("S_SR_Link_Undated")";
+        var S_SR_Link_Day = "@Html.Str("S_SR_Link_Day")";
+        var S_SR_Link_Week = "@Html.Str("S_SR_Link_Week")";
+        var S_SR_Link_Month = "@Html.Str("S_SR_Link_Month")";
+        var S_SR_Link_Year = "@Html.Str("S_SR_Link_Year")";
+        var S_SR_Link_AllInstitution = "@Html.Str("S_SR_Link_AllInstitution")";
+        var S_SR_Link_AllFormat = "@Html.Str("S_SR_Link_AllFormat")";
+        var S_SR_Link_AllSource = "@Html.Str("S_SR_Link_AllSource")";
+        var S_SR_Info_ShowUnSelected = "@Html.Str("S_SR_Info_ShowUnSelected")";
+        var S_SR_Info_CollectUnSelected = "@Html.Str("S_SR_Info_CollectUnSelected")";
+        var S_SR_Info_CollectFileUnSelected = "@Html.Str("S_SR_Info_CollectFileUnSelected")";
+        var S_SR_Label_CollecttedTitle = '@Html.Str("S_SR_Label_CollecttedTitle")';
+        var S_SR_Info_CollecttedInfo = '@Html.Str("S_SR_Info_CollecttedInfo")';
+        var S_SR_Button_CollecttedInfoClose = '@Html.Str("S_SR_Button_CollecttedInfoClose")';
+        var S_SR_Label_CollecttedTitle = '@Html.Str("S_SR_Label_CollecttedTitle")';
+        var S_SR_Info_CollecttedInfo = "@Html.Str("S_SR_Info_CollecttedInfo")";
+        var S_SR_Button_CollecttedInfoClose = '@Html.Str("S_SR_Button_CollecttedInfoClose")';
+        var S_SR_Link_First = "@Html.Str("S_SR_Link_First")";
+        var S_SR_Link_Previous = "@Html.Str("S_SR_Link_Previous")";
+        var S_SR_Link_Next = "@Html.Str("S_SR_Link_Next")";
+        var S_SR_Link_Last = "@Html.Str("S_SR_Link_Last")";
+        var S_SR_Label_Source = '@Html.Str("S_SR_Label_Source")';
+        var S_SR_Link_Undated = "@Html.Str("S_SR_Link_Undated")";
+        var S_SR_Label_Time = "@Html.Str("S_SR_Label_Time")";
+        var S_SR_Label_Institution = "@Html.Str("S_SR_Label_Institution")";
+        var S_SR_Link_AllAuthor = "@Html.Str("S_SR_Link_AllAuthor")";
+        var S_SR_Label_Author = "@Html.Str("S_SR_Label_Author")";
+        var S_SR_Label_Format = "@Html.Str("S_SR_Label_Format")";
+        var S_SR_Label_ToolTipBO = "@Html.Str("S_SR_Label_ToolTipBO")：";
+        var S_SR_Label_ToolTipBP = "@Html.Str("S_SR_Label_ToolTipBP")：";
+        var S_SR_Label_ToolTipPT = "@Html.Str("S_SR_Label_ToolTipPT")：";
+        var S_SR_Label_ToolTipBF = "@Html.Str("S_SR_Label_ToolTipBF")：";
+        var S_SR_Label_ToolTipFormat = "@Html.Str("S_SR_Label_ToolTipFormat")：";
+        var S_EDU_Info_DeleteTips = "@Html.Str("S_EDU_Info_DeleteTips")";
+        var S_EDU_Info_FailDelete = "@Html.Str("S_EDU_Info_FailDelete")";
+        var S_C_Button_Save = "@Html.Str("S_C_Button_Save")";
+        var S_SS_Info_SaveData = "@Html.Str("S_SS_Info_SaveData")";
+        var S_PD_Info_FailData = "@Html.Str("S_PD_Info_FailData")";
+        var S_PD_CheckBox_Male = "@Html.Str("S_PD_CheckBox_Male")";
+        var S_PD_CheckBox_Female = "@Html.Str("S_PD_CheckBox_Female")";
+        var S_EDU_Text_Delete = "@Html.Str("S_EDU_Text_Delete")";
+        var S_EDU_Info_EmptyTips = "@Html.Str("S_EDU_Info_EmptyTips")";
+        var S_EDU_Info_AfterTips = "@Html.Str("S_EDU_Info_AfterTips")";
+        var S_Work_Info_BeforeWorkTips = "@Html.Str("S_Work_Info_BeforeWorkTips")";
+        var S_EDU_Info_BeforeSchoolTips = "@Html.Str("S_EDU_Info_BeforeSchoolTips")";
+        var Format_Error = "@Html.Str("S_C_Info_FormatError")";
+        var S_SH_Label_QHISTORY = "@Html.Str("S_SH_Label_QHISTORY")";
+        var S_SH_Button_QTIMES = "@Html.Str("S_SH_Button_QTIMES")";
+        var S_SH_Info_FREQUENCY = "@Html.Str("S_SH_Info_FREQUENCY")";
+        var S_ADV_Text_AnyPos = "@Html.Str("S_ADV_Text_AnyPos")";
+        var S_ADV_Text_Title = "@Html.Str("S_ADV_Text_Title")";
+        var S_ADV_Text_Context = "@Html.Str("S_ADV_Text_Context")";
+        var S_C_Info_ServiceFailure = "@Html.Str("S_C_Info_ServiceFailure")";
+        var S_C_Info_AuthorizationError = "@Html.Str("S_C_Info_AuthorizationError")";
+        var S_C_Info_UnableGetService = "@Html.Str("S_C_Info_UnableGetService")";
+        var S_C_Info_ServiceNotFound = "@Html.Str("S_C_Info_ServiceNotFound")";
+        var S_C_Info_AuthorizationFailed = "@Html.Str("S_C_Info_AuthorizationFailed")";
+        var S_C_Info_Prompt = "@Html.Str("S_C_Info_Prompt")";
+        var S_ADV_Info_NoSearchWords = "@Html.Str("S_ADV_Info_NoSearchWords")";
+        var S_SR_Link_First = "@Html.Str("S_SR_Link_First")";
+        var S_SR_Link_Last = "@Html.Str("S_SR_Link_Last")";
+        var S_SR_Link_Previous = "@Html.Str("S_SR_Link_Previous")";
+        var S_SR_Link_Next = "@Html.Str("S_SR_Link_Next")";
+        var S_SR_Info_NotObtainedFile = "@Html.Str("S_SR_Info_NotObtainedFile")";
+        var S_ADV_Text_Selected = "@Html.Str("S_ADV_Text_Selected")";
+        var S_ADV_Text_Count = "@Html.Str("S_ADV_Text_Count")";
+        var S_C_Info_InformationPrompt = "@Html.Str("S_C_Info_InformationPrompt")";
+        var S_C_Info_InformationExist = "@Html.Str("S_C_Info_InformationExist")";
+        var ServiceURL = "@ViewBag.ApiUrl";
+        var ServiceVersion = "@ViewBag.ApiVersion";
+        var S_SRD_Text_Abstract = "@Html.Str("S_SRD_Text_Abstract")";
+        var S_SRD_Text_Cataloge = "@Html.Str("S_SRD_Text_Cataloge")";
+        var S_SRD_Text_Introduction = "@Html.Str("S_SRD_Text_Introduction")";
+        var S_SRD_Text_Summary = "@Html.Str("S_SRD_Text_Summary")";
+
+        var S_SR_Label_Picture = "@Html.Str("S_SR_Label_Picture")";
+        var S_SR_Label_PictureCol = "@Html.Str("S_SR_Label_PictureCol")";
+        var S_SR_Label_Multimedia= "@Html.Str("S_SR_Label_Multimedia")";
+        var S_SR_Label_Documentation= "@Html.Str("S_SR_Label_Documentation")";
+        var S_SR_Label_DataTable = "@Html.Str("S_SR_Label_DataTable")";
+        var S_SR_Label_Other= "@Html.Str("S_SR_Label_Other")";
+        var S_SRD_Text_zh_CN= "@Html.Str("S_SRD_Text_zh_CN")";
+        var S_SRD_Text_en_US= "@Html.Str("S_SRD_Text_en_US")";
+        var S_SRD_Text_dataset= "@Html.Str("S_SRD_Text_dataset")";
+
+    </script>
+</head>
+
+<body>
+    <div>
+        @RenderBody()
+    </div>
+    <div class="copyright">
+        @Html.Str("S_C_Label_Copyright")
+    </div>
+</body>
+</html>

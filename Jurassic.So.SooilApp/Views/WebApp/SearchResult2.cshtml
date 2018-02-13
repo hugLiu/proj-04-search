@@ -1,0 +1,516 @@
+﻿
+
+@{
+    ViewBag.Title = "SearchResult2";
+    Layout = "~/Views/Shared/_SoAppLayout.cshtml";
+    var urlPrefix = "http://www.yooso.com.cn/";
+    var newUrlPrefix = urlPrefix + "new";
+}
+@section head
+{
+    <link href="/Content/bootcss/css/bootstrap.css" rel="stylesheet">
+    <script src="/Scripts/bootcss/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/app/searchresult/SearchResult2.js"></script>
+    <link href="@newUrlPrefix/images/was.css" rel="stylesheet" type="text/css">
+    <link href="@newUrlPrefix/images/timeline.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="@newUrlPrefix/images/style.css">
+    <script src="@newUrlPrefix/images/hm.js"></script>
+    <script async="" src="@newUrlPrefix/images/ta.js"></script>
+    <!--为了分享功能把jquery1.42.min.js换成了jquery1.8.3.js-->
+    @*<script type="text/javascript" src="@newUrlPrefix/images/jquery1.8.3.js"></script>*@
+    <script type="text/javascript" src="@newUrlPrefix/images/jquery.SuperSlide.2.1.js"></script>
+    <script type="text/javascript" src="@newUrlPrefix/images/highcharts.js"></script>
+    <script type="text/javascript" src="@newUrlPrefix/images/index.js"></script>
+    <!--[if IE 6]>
+        <script type="text/javascript" src="js/ie6png.js"></script>
+        <script type="text/javascript">
+            DD_belatedPNG.fix('div,ul,li,a,p,img,body,table,tr,td,dd,dt,span');
+        </script>
+    <![endif]-->
+    <script type="text/javascript" src="@newUrlPrefix/images/yahoo-dom-event.js"></script>
+    <script type="text/javascript" src="@newUrlPrefix/images/suggest-yui2.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script>-->
+    <script type="text/javascript" src="@newUrlPrefix/images/jquery.cookie.min.js"></script>
+
+    <!--分享功能引用-->
+    <link rel="stylesheet" href="@newUrlPrefix/images/share.min.css">
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var ispromptshown = $.cookie('ispromptshown');
+            if (ispromptshown == "false") return;
+
+            //var dataUrl = 'searchsuggest?result=false';
+            //var dataUrl = 'http://11.11.185.83:8080/was5/web/searchsuggest?result=false';
+            var dataUrl = 'http://www.yooso.com.cn/searchsuggest?result=false&AppServerEncoding=iso-8859-1';
+            new TRSWAS.Suggest('textfield', dataUrl,
+            {
+                useShim: false,
+                resultFormat: '约%result%条结果'
+            });
+        };
+        $(document).ready(function(e) {
+            if ($(".yxj_bjRight2").height() <= $(".yxj_bjLeft2").height()) {
+                $(".yxj_bjRight2").height($(".yxj_bjLeft2").height());
+            } else {
+                $(".yxj_bjLeft2").height($(".yxj_bjRight2").height());
+            }
+
+        });
+
+    </script><script type="text/javascript">
+                 $(document).ready(function(e) {
+
+                     $(".yxj_nav2").hover(function() {
+                         $(".yxj_nav2 dd").toggle();
+                     })
+
+                 });
+                 function showmenu() {
+                     $(".yxj_tc").show();
+                 }
+                 function hidemenu() {
+                     $(".yxj_tc").hide();
+                 }
+             </script>
+    <style type="text/css">
+             @@media (max-width: 1280px) {
+                 .yxj_nav2 {
+                     display: block;
+                 }
+
+                 .yxj_cd {
+                     display: none;
+                 }
+             }
+
+             @@media (min-width: 1000px) and (max-width: 1279px) {
+                 .boxcenter2 {
+                     max-width: 1172px;
+                     width: 96%;
+                 }
+
+                 .yxj_bjLeft2 {
+                     width: 71%;
+                     min-width: 685px;
+                 }
+
+                 .yxj_bjRight2 {
+                     width: 27%;
+                     max-width: 276px;
+                 }
+             }
+
+             @@media (max-width: 999px) {
+                 .boxcenter2 {
+                     max-width: 960px;
+                     width: 960px;
+                 }
+
+                 .yxj_bjLeft2 {
+                     width: 665px;
+                     min-width: 665px;
+                 }
+
+                 .yxj_bjRight2 {
+                     width: 276px;
+                     max-width: 276px;
+                 }
+             }
+         </style>
+    <style>
+        .yxj_dsul h3 {
+            background: none;
+            overflow: visible;
+        }
+
+        .yxj_dsul h3 span {
+            display: inline-block;
+            position: relative;
+            overflow: visible;
+            height: 30px;
+        }
+
+        .fenxiang {
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: 5px 10px;
+            position: absolute;
+            margin-left: -20px;
+            margin-top: 4px;
+            width: 30px;
+            display: none;
+        }
+
+        .fenxiang a {
+            font-size: 14px;
+            display: block;
+            color: #333;
+        }
+
+        .yxj_share2 {
+            border: 1px solid #ccc;
+            background: #fff;
+            z-index: 5;
+            position: absolute;
+            width: 130px;
+            margin-left: 0px;
+            margin-top: 4px;
+            margin-left: -20px;
+            overflow: visible;
+            padding: 6px;
+            display: none;
+        }
+
+        .yxj_dsul h3 span .social-share a {
+            overflow: visible;
+        }
+
+        .yxj_share2 .social-share {
+            overflow: visible;
+        }
+
+        .yxj_dsul h3 .yxj_share2 span {
+            display: inline;
+            float: right;
+            margin-right: 3px;
+            cursor: pointer;
+        }
+
+        .yxj_dsul h3 .yxj_share2 p {
+            margin: 0 4px;
+        }
+
+        .yxj_dsul h3 span:hover .fenxiang {
+            display: block;
+        }
+
+        .yxj_dsul li, .yxj_dsul, .yxj_dsmain, .yxj_bjLeft2, .boxcenter2 {
+            overflow: visible;
+        }
+
+        .clearfo {
+            clear: both;
+        }
+
+        .cf_xs {
+            width: 88px;
+            background: #484848;
+            position: absolute;
+            left: 186px;
+            height: 66px;
+            z-index: 1;
+        }
+
+        .cf_xs1 {
+            width: 88px;
+            margin-left: 8px;
+            color: rgb(192, 192, 192);
+        }
+
+        .cf_xs1 h3 {
+            padding-bottom: 6px;
+        }
+
+        .cf_xs1 h3 a {
+            font-size: 13px;
+            line-height: 32px;
+        }
+
+        .cf_xs1 h4 a {
+            font-size: 13px;
+            line-height: 16px;
+        }
+
+        .cf_xs1 h3 a:hover {
+            background: url(../images/yxj_nav.jpg) repeat-x left 22px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .cf_xs1 h4 a:hover {
+            background: url(../images/yxj_nav.jpg) repeat-x left 14px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        @@media (min-width: 1500px) {
+            .cf_xs {
+                width: 86px;
+            }
+
+            .cf_xs1 {
+                width: 90px;
+            }
+        }
+
+        @@media screen and (-webkit-min-device-pixel-ratio: 0) {
+            .cf_xs1 {
+                width: 92px;
+            }
+        }
+
+        @@media (min-width: 1280px) and (max-width: 1499px) {
+            .cf_xs {
+                width: 88px;
+            }
+
+            .cf_xs1 {
+                width: 88px;
+            }
+        }
+    </style>
+    <style id="suggest-style" type="text/css">
+        .suggest-container {
+            margin-left: -1px;
+            margin-right: 1px;
+            background: white;
+            border: 1px solid #ed6236;
+            z-index: 99999;
+        }
+
+        .suggest-shim {
+            z-index: 99999;
+        }
+
+        .suggest-container li {
+            color: #404040;
+            padding: 1px 0 2px;
+            font-size: 14px;
+            text-indent: 40px;
+            line-height: 44px;
+            float: left;
+            width: 100%;
+        }
+
+        .suggest-container ol {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .suggest-container li.selected {
+            background-color: #ed6236;
+            cursor: default;
+        }
+
+        .suggest-key {
+            font-size: 18px;
+            line-height: 44px;
+            text-indent: 16px;
+        }
+
+        .suggest-result {
+            float: right;
+            text-align: right;
+            padding-right: 5px;
+            color: green;
+        }
+
+        .suggest-container li.selected span {
+            color: #FFF;
+            cursor: default;
+        }
+
+        .suggest-bottom {
+            padding: 0 5px 5px;
+        }
+
+        .suggest-close-btn {
+            float: right;
+        }
+
+        .suggest-container li, .suggest-bottom {
+            overflow: hidden;
+            zoom: 1;
+            clear: both;
+        }
+
+        .suggest-container {
+            *margin-left: -5px;
+            _margin-left: -2px;
+            _margin-top: -3px;
+        }
+    </style>
+<script type="text/javascript" src="@newUrlPrefix/images/share.min.js"></script>
+
+
+}
+
+    ﻿
+    <div class="suggest-container" style="position: absolute; visibility: hidden; left: 226px; top: 98px; width: 444px;"></div>
+
+    <!--导航开始-->
+    <div class="yxj_nav" style="display: none">
+        @*<div class="boxcenter" style="margin:0 auto;overflow:visible;">
+                <ul>
+                    <li><a href="http://www.petropub.com/" target="_blank">石油社官网</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="http://store.yooso.com.cn/" target="_blank">中油书店</a></li>
+                    <li onmouseover="b1.style.display=&#39;block&#39;" onmouseout="b1.style.display=&#39;none&#39;">
+                        <a href="http://sci.yooso.com.cn/">石油知识库</a>
+                        <div class="cf_xs" id="b1" style="display: none;">
+                            <div class="cf_xs1">
+                                <h3><a href="http://sci.yooso.com.cn/">钻井知识库</a></h3>
+                                <h4><a href="http://yooso.com.cn/search?extendopt=RELEVANTMODE%3D32768&channelid=234439&searchword=%E9%92%BB%E4%BA%95%E6%B6%B2&perpage=&templet=&token=#">勘探知识库</a></h4>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li><a href="http://baike.yooso.com.cn/" target="_blank">石油百科</a></li>
+                    <li><a href="http://bz.yooso.com.cn/">石油标准</a></li>
+                    <li><a href="http://www.petroj.cn/" target="_blank">石油期刊</a></li>
+
+                    <li><a href="http://fanyi.yooso.com.cn/" target="_blank">石油翻译</a></li>
+                    <li><a href="http://nydjt.yooso.com.cn/" target="_blank">能源大讲坛</a></li>
+                    <li><span>|</span></li>
+
+                </ul>
+
+                <a href="http://www.yooso.com.cn/" target="_blank">
+                    <div class="ys_logo"><img class="yxj_logo" src="@newUrlPrefix/images/yxj_logo2.png"></div>
+                </a>
+            </div>*@
+    </div>
+    <!--导航结束-->
+    <!--头部开始-->
+    <div class="yxj_top" style="height: 80px;">
+        <div class="boxcenter" style="margin:0 auto; overflow:visible;">
+            <a href="/webapp/searchindex" target="_blank">
+                <img class="yxj_logo2" src="/Images/sooil/searchresult_logo.png" style="margin-top: 18px;">
+            </a>
+            <div class="yxj_left"  style="margin-top: 13px">
+                <div class="yxj_jiansuo">
+
+                    <div id="main">
+                        <div id="header">
+                            <span><img src="@urlPrefix/images/yxj_line.png"></span>
+                            <input type="text" v-model="searchText" id="textfield" name="searchword" class="yxj_text" onfocus="showmenu()" value="" onblur="hidemenu()" autocomplete="off">
+                            <input type="submit" value="" class="yxj_sub" id="PL_SEARCHBTN" v-on:click="search">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <select style="display: none" class="down-selection" id="PL_SOURCE_SELECT" onchange="search();"></select>
+        </div>
+    </div>
+    <!--头部结束-->
+    <!--内容开始-->
+    <div class="yxj_main2">
+        <div class="boxcenter2" style="margin:12px auto;">
+            <!--左侧开始-->
+            <div class="yxj_bjLeft2" style="height: auto;">
+                <div class="yxj_dsmain">
+                    <div class="yxj_dsul">
+                        <h1 id="PL_PAGECONTENT1">
+                            <span>搜索结果</span>
+                            找到相关结果约 0 条，用时0.0秒
+                        </h1>
+                        <div id="PL_CONTENT_SPAN">
+                            <span id="PL_NO_DATA1" v-if="searchResultList.length==0">没有检索到信息</span>
+                            <template v-for="item in searchResultList">
+                                <h2 class='font_bold' style="margin-bottom: 10px;margin-top:10px">
+                                    <a style="text-decoration: none; cursor: pointer;font-size: 20px" class="PL_GOTO_CLASS" 
+                                       pl_urlname="$IR_URLNAME$" pl_groupname="$IR_GROUPNAME$" pl_sitename="$IR_SITENAME$" 
+                                       plid="$TRUEID$" name="IR_URLNAME" cutsize="0" showmore="no" target="_blank">{{item.title}}</a>
+                                </h2>
+                                <div style="display: table-cell;vertical-align: top; padding-right: 10px; padding-left: 18px; ">
+                                    <img class="media-object" style="width: 120px; height: 120px; margin-left: 18px; display: block; vertical-align: middle;border:0" v-bind:src="item.thumbnail" v-bind:alt="item.title">
+                                </div>
+                                <div style="display: table-cell;vertical-align: top;padding-left: 7px; padding-bottom: 20px;overflow: hidden">
+                                    <h3  v-if="item.source" >
+                                        <span class="PL_GOTO_CLASS" style="color:#ffa40a">@Html.Str("S_SR_Label_ListSource")</span><span style="color:#b8b8b8">{{item.source}}</span>
+                                    </h3>
+                                    <div class="clear"></div>
+                                    <h3 v-if="item.creator">
+                                        <span class="PL_GOTO_CLASS"style="color:#ffa40a">@Html.Str("S_SR_Label_ListAuthor")</span><spann style="color:#b8b8b8">{{item.creator}}</spann>
+                                    </h3>
+                                    <div class="clear"></div>
+                                    <h3 v-if="item.createdDate">
+                                        <span class="PL_GOTO_CLASS"style="color:#ffa40a">@Html.Str("S_SR_Label_ListDate")</span><spann style="color:#b8b8b8">{{item.createdDate}}</spann>
+                                    </h3>
+                                    <div class="clear"></div>
+                                    <h3 v-if="item.abstract">
+                                        <span class="PL_GOTO_CLASS"style="color:#ffa40a">@Html.Str("S_SR_Label_ListSummary")</span><spann style="color:#b8b8b8">{{item.abstract}}</spann>
+                                    </h3>
+                                    <div class="clear"></div>
+                                </div>
+
+                            
+                                <hr style='height:1px;border:none;border-top:1px solid #E0E0E0;'>
+
+                            </template>
+                        </div>
+                        <div style="BACKGROUND-COLOR: #FFFFFF; width: 100%;display:none">
+                            <table height="60px" cellspacing="0" cellpadding="0" border="0">
+                                <tbody id="PL_REL_WORDS">
+                                    <tr>
+                                        <th valign="top" style="padding-top: 6px; FONT-WEIGHT: bold; FONT-SIZE: 16px; WIDTH: 75px; HEIGHT: 40px; padding-left: 8px;" align="left" colspan="12">
+                                            相关搜索
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="" id="outlinebar">
+
+                        </div>
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <!--右侧开始-->
+            <div class="yxj_bjRight2">
+
+                <div class="yxj_xlqt" style="margin-top:0;width:234;height:470px;">
+                    ﻿
+                    <h1 style="text-indent:0px;" class="font_bold">相关图书</h1>
+                    <iframe style="height:800px;" src="" id="PL_BOOK_SEARCH"></iframe>
+                    </ul>
+                </div>
+                <div class="yxj_xlqt" style="margin-bottom:0; margin-top:0;">
+
+                    <h1 style="text-indent:0px;" class="font_bold">推广链接</h1>
+                    <ul class="yxj_tg font_bold2">
+                        <li>
+                            <a href="http://www.cnpc.com.cn/cnpc/index.shtml" target="_blank">
+                                <span>&lt;推广&gt;</span>
+                                中国石油天然气集团公司官网,主营业务的综合性国际能源公司能源公司...
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.sinopec.com/" target="_blank">
+                                <span>&lt;推广&gt;</span>
+                                中国石化官网,中国石化，为美好生活加油...
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.91shihua.com/" target="_blank">
+                                <span>&lt;推广&gt;</span>
+                                中国原油网,专业中国原油网选国鑫石化..
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://oil.in-en.com/" target="_blank">
+                                <span>&lt;推广&gt;</span>
+                                国际石油网,国际石油价格走势，新闻详情...
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--右侧结束-->
+        </div>
+    </div>
+
+    
+
+
+
+
+@*<a data-version="2016102115" data-cltversion="2.1.0.0" data-cltsource="10023" data-cltuuid="e76f4f76be5c9bc1224e7bf276573120" data-cltats="4" href="javascript:" id="yht-info-explugin" style="display: none;"></a>*@
+
+

@@ -1,0 +1,3836 @@
+﻿@{
+    var urlPrefix = "http://sci.yooso.com.cn/";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+    <!-- 页面编码 -->
+    <meta charset="utf-8">
+    <!-- 强制使用ie高版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 极速核，增加标签 -->
+    <meta name="renderer" content="webkit">
+    <!-- 控制缓存 -->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <!-- 钻井知识服务平台CNZZ统计开始 -->
+    <script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1261802146'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1261802146' type='text/javascript'%3E%3C/script%3E"));
+document.getElementById("cnzz_stat_icon_1261802146").style.display = "none";
+    </script>
+    <!-- 钻井知识服务平台CNZZ统计结束 -->
+    <!-- Piwik -->
+    <script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.dev.petropub.net/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '5']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+    </script>
+    <!-- End Piwik Code -->
+    <!-- 百度统计开始 -->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e712d178b6b1d0b543ba7ec4f1714699";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    <!-- 百度统计结束-->
+
+    <title>搜索-专题库</title>
+    <link href="@urlPrefix/static/custom/css/glogbal.css" rel="stylesheet" type="text/css" />
+    <link href="@urlPrefix/static/custom/css/search.css" rel="stylesheet" type="text/css" />
+    <link href="@urlPrefix/static/custom/css/search_default.css" rel="stylesheet" type="text/css" />
+
+    <script language="JavaScript" type="text/javascript" src="@urlPrefix/static/custom/js/jquery-1.8.3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="@urlPrefix/static/custom/js/jQselect.js"></script>
+    <script language="javascript" type="text/javascript" src="@urlPrefix/static/custom/js/search.js"></script>
+    <style>
+            .gf_xs{width:88px;background:#484848; position:absolute;left: 186px;height:66px;z-index:1;}
+            .gf_xs1{ width:88px; margin-left:8px; color:rgb(192, 192, 192)}
+            .gf_xs1 h3 a{ font-size:13px; line-height:26px;margin-bottom: 10px}
+            .gf_xs1 h4 a{ font-size:13px; line-height:12px;margin-bottom: 10px}
+            .gf_xs1 h3 a:hover{
+                background:url("@urlPrefix/static/custom/images/yxj_nav.jpg") repeat-x left 22px;
+                color:#fff;
+                text-decoration:none;
+            }
+
+            .gf_xs1 h4 a:hover{
+                background-image:url(http://www.codefans.net/article/upload/201310/102848.gif);
+                background-repeat: repeat-x;
+                background-position: center;
+                color:#fff;
+                text-decoration:none;
+            }
+
+            @@media (min-width: 1500px) {
+                .gf_xs{width:86px;}
+                .gf_xs1{width:90px;}
+            }
+            @@media screen and (-webkit-min-device-pixel-ratio:0){
+                .gf_xs1{width:92px;}
+            }
+            @@media (min-width: 1280px) and (max-width:1499px) {
+                .gf_xs{width:88px;}
+                .gf_xs1{width:88px;}
+            }
+    </style>
+</head>
+<body>
+    <!--导航开始-->
+
+
+
+    <div class="yxj_nav">
+        <div class="boxcenter" style="margin:0 auto;overflow:visible;">
+          
+            <ul>
+                <li><a href="http://www.petropub.com.cn">石油社官网</a></li>
+                <li><span>|</span></li>
+                <li><a href="http://store.yooso.com.cn">中油书店</a></li>
+
+
+                <li onmouseover="b1.style.display='block'" onmouseout="b1.style.display='none'">
+                    <a href="javascript:void(0)">石油知识库</a>
+                    <div class="gf_xs" id="b1" style="display:none">
+                        <div class="gf_xs1">
+                            <h3><a href="http://zuanjing.yooso.com.cn">钻井知识库</a></h3>
+                            <h3><a href="http://kantan.yooso.com.cn/">勘探知识库</a></h3>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="http://baike.yooso.com.cn/">石油百科</a></li>
+                <div class="yxj_cd" style="float:left;">
+                    <li><a href="http://bz.yooso.com.cn">石油标准</a></li>
+                    <li><a href="http://www.petroj.cn/">石油期刊</a></li>
+                    <li><a href="http://fanyi.yooso.com.cn">石油翻译</a></li>
+                    <li><span>|</span></li>
+                </div>
+            </ul>
+            <a href="http://www.yooso.com.cn">
+                <img class="yxj_logo" src="@urlPrefix/static/custom/images/yxj_logo2.png" />
+            </a>
+            <div class="yxj_admin ">
+
+
+                <h1><a href="javascript:void(0)" onclick="login()">登录</a></h1>
+                <h1><a href="/register">注册</a></h1>
+
+
+            </div>
+        </div>
+    </div>
+    <script>
+    function login() {
+        window.location.href = "/login?returnpath=" + "http://sci.yooso.com.cn/search?t=0?p=1?w=%E8%AE%A9%E4%BA%BA";
+    }
+
+    </script>
+    <!--头部开始-->
+
+
+    <link href="@urlPrefix/static/custom/css/jquery.ui.crashboard.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@urlPrefix/static/custom/js/jquery.ui.crashboard.js"></script>
+
+
+    <div class="yxj_top">
+        <div class="cf_lgz boxcenter">
+            <div class="cf_lg">
+                <div class="cf_logo" style="cursor: pointer" onclick="window.location.href='/index'">
+                    <img style="width: 275px;margin-top: -3px" src="@urlPrefix/static/custom/images/logo.png" />
+                </div>
+                <div class="search radius6" style="float:left;margin-top: 2px; position:relative">
+                    <form name="searchform" method="get" action="/search" onsubmit="return check()">
+                        <div style="position:absolute; left:8px; top:11px; margin-right:10px;">
+                            <img src="@urlPrefix/static/custom/images/icon_menu.png" style="width: 17px; margin-top: 2px;" />
+                        </div>
+                        <select name="t" id="choose">
+                            <option selected value="0" text="全部">全部</option>
+                            <option value="3" text="知识点">知识点</option>
+                            <option value="1" text="出版物">出版物</option>
+
+                            <option value="4" text="标准">标准</option>
+                        </select>
+                        <input type="hidden" name="p" value="1">
+                        <input autocomplete="off" onpropertychange="handle()" oninput="handle()" class="inp_srh" style="padding-right: 40px;" id="searchContentId" name="w" placeholder="" value="让人">
+                        <ul class="yxj_tc" style="display: block;width: 375px;margin-left: 120px;" id="enlist"></ul>
+                        <div style="position:absolute; top:8px; right:220px;" id="icon-search">
+                            <img src="@urlPrefix/static/custom/images/icon_search.png" />
+                        </div>
+
+                        <input class="btn_srh" type="submit" value="搜索" style="cursor:pointer;">
+                        <input class="btn_srh1" type="button" onclick="openAdvanced()" value="高级搜索" style="cursor:pointer;">
+                    </form>
+                </div>
+
+                <div class="cf_tj" id="hotword">
+                    热词推荐：
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="@urlPrefix/static/custom/js/jquery.select.js"></script>
+
+    <script type="text/javascript">
+    function openAdvanced() {
+        window.CrashBoard.show({
+            id:"advanced",
+            url:"/search/openadvanced",
+            maskable : true, //是否绘制遮布
+            width : '800px',//宽度
+            height : '420px',//高度
+            callback : function(data) {
+            },
+            title:'高级搜索'
+        });
+    }
+    function check() {
+        var valueI = document.getElementById('searchContentId').value;
+        if(valueI.replace(/(^\s+)|(\s+$)/g,'')==""){
+            return false;
+        }
+    }
+    function sub() {
+        var aaa = $(".select_showbox").val();
+        alert(aaa);
+        var op = $("#r").val();
+        alert(op);
+    }
+    //点击空白隐藏
+    $(function () {
+        $(document).click(function (e) {
+            if (e.target.className == "yxj_eng") {
+                return false;
+            } else {
+                $(".select_option").hide();
+            }
+        });
+        $("#choose").val("0");
+
+        $.ajax({
+
+            type: "POST",
+            url: "/words/getTop5HotWord",
+            success: function(data) {
+                for(var i = 0; i < data.length; i++){
+                    var result = "<a href='/search?t=0&p=1&w="+data[i].word+"' title='"+data[i].word+"'>"+data[i].word+"</a>";
+                    $("#hotword").append(result);
+                }
+            }
+        });
+    })
+
+    function handle(){
+       var txtValue = $("#searchContentId").val().replace("'","");
+
+        $.ajax({
+            type: "POST",
+            url: "/words/wordsearch",
+            data: {"word": txtValue},
+            success: function(data) {
+                    $("#enlist").html("");//刷新下拉列表
+                    if(data.length > 0){
+                        entryList = data;
+                        for(var i = 0; i < data.length; i++){
+                            var result = "<li><a href='/search?t=0&p=1&w="+data[i].word+"' title='"+data[i].word+"'><p>"+subString(data[i].word, 40, true)+"</p></a></li>";
+                            $("#enlist").append(result);
+                        }
+                        $(".yxj_tc li").mouseover(function(e) {
+                            $(this).addClass("on").siblings().removeClass("on");
+                        });
+                    }
+                    $(".yxj_tc").show();
+            }
+        });
+        //放大镜图标隐藏
+//        if(txtValue==''){
+//            $('#icon-search').show();
+//        }else{
+//            $('#icon-search').hide();
+//        }
+    }
+    //点击搜索框时隐藏放大镜图标
+    $(function () {
+        $('#searchContentId').focus(function () {
+            $('#icon-search').hide();
+        })
+        $('#searchContentId').blur(function () {
+            $('#icon-search').show();
+        })
+    });
+    //------------下拉框键盘上下移动效果-----------------
+
+    $(document).keydown(function(e) {
+        var len=$(".yxj_tc li").length;
+        if(event.keyCode==40){
+            var li=$(".yxj_tc .on");
+            var num=li.index();
+            if(num==-1){
+                $(".yxj_tc li").first().addClass("on");
+                $(".yxj_text").val($(".yxj_tc li").first().text());
+            }
+            if(num==len-1){
+                return false;
+            }
+            else{
+                li.removeClass("on");
+                li.next().addClass("on");
+                var text=$(".yxj_tc .on a").text();
+                $(".yxj_text").val(text);
+            }
+        }
+        if(event.keyCode==38){
+            var li=$(".yxj_tc .on");
+            var num=li.index();
+            if(num<1){
+                return false;
+            }
+            else{
+                li.removeClass("on");
+                li.prev().addClass("on");
+                var text=$(".yxj_tc .on a").text();
+                $(".yxj_text").val(text);
+            }
+        }
+    });
+
+    //计算字符串长度
+
+    //截取字符串 包含中文处理
+    //(串,长度,增加...)
+    function subString(str, len, hasDot)
+    {
+        var newLength = 0;
+        var newStr = "";
+        var chineseRegex = /[^\x00-\xff]/g;
+        var singleChar = "";
+        var strLength = str.replace(chineseRegex,"**").length;
+        for(var i = 0;i < strLength;i++)
+        {
+            singleChar = str.charAt(i).toString();
+            if(singleChar.match(chineseRegex) != null)
+            {
+                newLength += 2;
+            }
+            else
+            {
+                newLength++;
+            }
+            if(newLength > len)
+            {
+                break;
+            }
+            newStr += singleChar;
+        }
+
+        if(hasDot && strLength > len)
+        {
+            newStr += "...";
+        }
+        return newStr;
+    }
+
+    $(document).click(function (e) {
+        $("#enlist").html("");
+    });
+
+
+
+    </script>
+
+    <!-- 页面 -->
+    <div class="cf_nr1">
+        <!-- 导航 -->
+        <div class="cf_sy">
+            <img src="@urlPrefix/static/custom/images/breadcrumbs_point.png" />
+            <span><a href="#">首页</a>\<h5>资源导航</h5></span>
+        </div>
+        <!-- 内容 -->
+        <div class="cf_tx">
+            <!-- 内容左侧 -->
+            <div class="cf_x_g1">
+                <!---------------------应用分类------------------------>
+                <div class="cf_x_g-1">
+                    <div class="cf_yy-1"><span>应用分类</span></div>
+                </div>
+                <div class="cf_x_g-1">
+                    <div class="subNavBox">
+
+                        <input id="fac" type="hidden" value="钻井事故与复杂问题" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=让人&c=钻井事故与复杂问题&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井事故与复杂问题(1929)">
+
+
+                                钻井事故与...&nbsp;
+
+
+
+
+                                (1929)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井　漏&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井　漏">
+
+
+
+                                    井　漏
+
+
+
+                                    (389)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井下落物事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下落物事故">
+
+
+
+                                    井下落物事故
+
+
+
+                                    (113)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井喷事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井喷事故">
+
+
+
+                                    井喷事故
+
+
+
+                                    (812)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=卡钻事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="卡钻事故">
+
+
+
+                                    卡钻事故
+
+
+
+                                    (478)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=固井复杂问题与事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井复杂问题与事故">
+
+
+                                    固井复杂问...&nbsp;
+
+
+
+
+                                    (470)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=测井事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="测井事故">
+
+
+
+                                    测井事故
+
+
+
+                                    (419)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻具断落事故&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻具断落事故">
+
+
+
+                                    钻具断落事故
+
+
+
+                                    (163)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=防斜打直井&s=&f=钻井事故与复杂问题&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="防斜打直井">
+
+
+
+                                    防斜打直井
+
+
+
+                                    (156)
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用地质" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=让人&c=钻井常用地质&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用地质(333)">
+
+
+
+                                钻井常用地质
+
+
+
+                                (333)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=中国地质简介&s=&f=钻井常用地质&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="中国地质简介">
+
+
+
+                                    中国地质简介
+
+
+
+                                    (3)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=区域地质及岩石特性&s=&f=钻井常用地质&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="区域地质及岩石特性">
+
+
+                                    区域地质及...&nbsp;
+
+
+
+
+                                    (309)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=岩石性质&s=&f=钻井常用地质&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="岩石性质">
+
+
+
+                                    岩石性质
+
+
+
+                                    (8)
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用数据" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=让人&c=钻井常用数据&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用数据(20)">
+
+
+
+                                钻井常用数据
+
+
+
+                                (20)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=单位换算数据（表）&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="单位换算数据（表）">
+
+
+                                    单位换算数...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=卷筒和绳筒的容量（IADC）&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="卷筒和绳筒的容量（IADC）">
+
+
+                                    卷筒和绳筒...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=固井水泥数据&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井水泥数据">
+
+
+
+                                    固井水泥数据
+
+
+
+                                    (17)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=直径与容积关系&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="直径与容积关系">
+
+
+                                    直径与容积...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻头与套管间隙标准&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻头与套管间隙标准">
+
+
+                                    钻头与套管...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=风速及风压表&s=&f=钻井常用数据&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="风速及风压表">
+
+
+
+                                    风速及风压表
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用材料" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=让人&c=钻井常用材料&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用材料(346)">
+
+
+
+                                钻井常用材料
+
+
+
+                                (346)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=常用材料物理化学性质&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="常用材料物理化学性质">
+
+
+                                    常用材料物...&nbsp;
+
+
+
+
+                                    (126)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=振动筛网、旋流分离器、水龙带&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="振动筛网、旋流分离器、水龙带">
+
+
+                                    振动筛网、...&nbsp;
+
+
+
+
+                                    (2)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=油井水泥及水泥外加剂&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="油井水泥及水泥外加剂">
+
+
+                                    油井水泥及...&nbsp;
+
+
+
+
+                                    (38)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=焊条、焊料、电气焊工具&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="焊条、焊料、电气焊工具">
+
+
+                                    焊条、焊料...&nbsp;
+
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=金刚石及硬质合金&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="金刚石及硬质合金">
+
+
+                                    金刚石及硬...&nbsp;
+
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井常用皮带及链条&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井常用皮带及链条">
+
+
+                                    钻井常用皮...&nbsp;
+
+
+
+
+                                    (34)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井常用胶管、玻璃钢管及橡胶管密封圈&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井常用胶管、玻璃钢管及橡胶管密封圈">
+
+
+                                    钻井常用胶...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井常用钢材机械性能&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井常用钢材机械性能">
+
+
+                                    钻井常用钢...&nbsp;
+
+
+
+
+                                    (2)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井油料&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井油料">
+
+
+
+                                    钻井油料
+
+
+
+                                    (5)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井绳类&s=&f=钻井常用材料&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井绳类">
+
+
+
+                                    钻井绳类
+
+
+
+                                    (126)
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井常用计算" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=让人&c=钻井常用计算&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井常用计算(370)">
+
+
+
+                                钻井常用计算
+
+
+
+                                (370)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=事故与复杂情况计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="事故与复杂情况计算">
+
+
+                                    事故与复杂...&nbsp;
+
+
+
+
+                                    (6)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井控计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井控计算">
+
+
+
+                                    井控计算
+
+
+
+                                    (18)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井架基础的计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井架基础的计算">
+
+
+                                    井架基础的...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井眼轨迹可视化研究&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井眼轨迹可视化研究">
+
+
+                                    井眼轨迹可...&nbsp;
+
+
+
+
+                                    (160)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井身质量计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井身质量计算">
+
+
+
+                                    井身质量计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=交流电&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="交流电">
+
+
+
+                                    交流电
+
+
+
+                                    (6)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=其它计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="其它计算">
+
+
+
+                                    其它计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=几何计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="几何计算">
+
+
+
+                                    几何计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=参数优选计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="参数优选计算">
+
+
+
+                                    参数优选计算
+
+
+
+                                    (13)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=固井计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井计算">
+
+
+
+                                    固井计算
+
+
+
+                                    (7)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=地层压力计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="地层压力计算">
+
+
+
+                                    地层压力计算
+
+
+
+                                    (15)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=定向井计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="定向井计算">
+
+
+
+                                    定向井计算
+
+
+
+                                    (132)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=水力参数计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="水力参数计算">
+
+
+
+                                    水力参数计算
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=浮力计算与系数表&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="浮力计算与系数表">
+
+
+                                    浮力计算与...&nbsp;
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=直流电&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="直流电">
+
+
+
+                                    直流电
+
+
+
+                                    (1)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=管柱计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="管柱计算">
+
+
+
+                                    管柱计算
+
+
+
+                                    (3)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻机提升力学计算&s=&f=钻井常用计算&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻机提升力学计算">
+
+
+                                    钻机提升力...&nbsp;
+
+
+
+
+                                    (6)
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井液" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=让人&c=钻井液&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井液(657)">
+
+
+
+                                钻井液
+
+
+
+                                (657)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井下复杂情况下的钻井液技术&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下复杂情况下的钻井液技术">
+
+
+                                    井下复杂情...&nbsp;
+
+
+
+
+                                    (161)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=体系与类型&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="体系与类型">
+
+
+
+                                    体系与类型
+
+
+
+                                    (356)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=性能测试方法与配套仪器&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="性能测试方法与配套仪器">
+
+
+                                    性能测试方...&nbsp;
+
+
+
+
+                                    (56)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=功用组成&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="功用组成">
+
+
+
+                                    功用组成
+
+
+
+                                    (9)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=深井钻井液技术简介&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="深井钻井液技术简介">
+
+
+                                    深井钻井液...&nbsp;
+
+
+
+
+                                    (5)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=配浆材料与处理剂&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="配浆材料与处理剂">
+
+
+                                    配浆材料与...&nbsp;
+
+
+
+
+                                    (21)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井液计算&s=&f=钻井液&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井液计算">
+
+
+
+                                    钻井液计算
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+
+
+
+
+                        <input id="fac" type="hidden" value="钻井设备与工具" />
+
+
+                        <div id="fac_plus" style="float: left;" class="subNav">
+                            &nbsp;
+                        </div>
+
+
+                        <div class="addsubNavF">
+
+
+                            <a style="color:#666666;" href="search?a=&t=0&p=1&w=让人&c=钻井设备与工具&s=&f=&i=&adv1=&adv2=&adv3=&adv4=" TITLE="钻井设备与工具(1899)">
+
+
+                                钻井设备与...&nbsp;
+
+
+
+
+                                (1899)
+
+                            </a>
+
+                        </div>
+
+
+
+
+                        <ul class="navContent" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=事故处理工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="事故处理工具">
+
+
+
+                                    事故处理工具
+
+
+
+                                    (178)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井下动力钻具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下动力钻具">
+
+
+
+                                    井下动力钻具
+
+
+
+                                    (427)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=井下工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="井下工具">
+
+
+
+                                    井下工具
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=固井&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="固井">
+
+
+
+                                    固井
+
+
+
+                                    (1134)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=地层测试工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="地层测试工具">
+
+
+
+                                    地层测试工具
+
+
+
+                                    (52)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=套管开窗侧钻工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="套管开窗侧钻工具">
+
+
+                                    套管开窗侧...&nbsp;
+
+
+
+
+                                    (55)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=定向井工具及仪器&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="定向井工具及仪器">
+
+
+                                    定向井工具...&nbsp;
+
+
+
+
+                                    (351)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=常用井口工具&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="常用井口工具">
+
+
+
+                                    常用井口工具
+
+
+
+                                    (17)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井井控&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井井控">
+
+
+
+                                    钻井井控
+
+
+
+                                    (129)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井仪器仪表&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井仪器仪表">
+
+
+
+                                    钻井仪器仪表
+
+
+
+                                    (794)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井取心&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井取心">
+
+
+
+                                    钻井取心
+
+
+
+                                    (86)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻井管材&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻井管材">
+
+
+
+                                    钻井管材
+
+
+
+                                    (217)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻头及喷嘴&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻头及喷嘴">
+
+
+
+                                    钻头及喷嘴
+
+
+
+                                    (37)
+
+                                </a>
+                            </li>
+
+
+
+
+                            <li>
+                                <a href="search?a=&t=0&p=1&w=让人&c=钻机&s=&f=钻井设备与工具&ss=sy_tvb&i=&adv1=&adv2=&adv3=&adv4=" title="钻机">
+
+
+
+                                    钻机
+
+
+
+                                    (487)
+
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+
+
+
+
+                    </div>
+                </div>
+                <!---------------------资源分类------------------------>
+                <div class="cf_x_g-1">
+                    <div class="cf_yy-1"><span>资源分类</span></div>
+                    <div class="cf_yy-3">
+                        <ul>
+                            <li><a href="javascript:void(0);" onclick="submit_tvb('book')">出版物(1)</a></li>
+
+                            <li><a href="javascript:void(0);" onclick="submit_tvb('topic')">知识点(2500)</a></li>
+                            <li><a href="javascript:void(0);" onclick="submit_tvb('standard')">标&nbsp;准(5)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!---------------------热搜词汇------------------------>
+
+
+                <div class="cf_rs">
+                    <div class="cf_rs-1">
+                        <div class="cf_rs-2">热搜词汇</div>
+                        <div class="cf_sz">
+                            <ul id="hotwords"></ul>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "/words/getTop5HotWord",
+            success: function(data) {
+                for(var i = 0; i < 5; i++) {
+                    var num = i+1;
+                    var result = "<a href='/search?t=0&p=1&w=" + data[i].word + "'><li><span><img src='@urlPrefix/static/custom/images/list_num" + num + ".png' /></span>" + data[i].word + "</li></a>"
+                    $("#hotwords").append(result);
+                }
+            }
+        });
+    })
+                </script>
+                <!-- 内容右侧 -->
+            </div>
+
+            <div class="cf_t_m">
+                <div class="cf_d_h">
+                    <!---------------------详细结果信息------------------------>
+                    <div class="cf_b_t">
+                        <div class="cf_wei">找到相关结果约2506条，用时6.642s</div>
+                        <div class="cf_xin" style="margin-left: inherit;" onmouseover="a2.style.display='block'" onmouseout="a2.style.display='none'">
+                            <div class="cf_paixu-1" id="divCon1" style="width: 74px;"><a href="#" id="ord">按相关度排序</a></div>
+                            <div class="cf_xin-1"><a href="#"><img src="@urlPrefix/static/custom/images/icon_filter.png"></a></div>
+                        </div>
+                        <div class="cf_yc1" id="a2" style="display:none; width: auto;" onmouseover="style.display='block'" onmouseout="style.display='none'">
+                            <ul>
+                                <li style="margin-top:0px;"><a id="byCognate" href="javascript:void(0);" onclick="onSort(0)" style="color: #ED6236;">按相关度排序</a></li>
+                                <li><a id="byTime" href="javascript:void(0);" onclick="onSort(1)">按时间排序</a></li>
+                            </ul>
+                        </div>
+                        <div class="cf_paixu" id="cf_paixu">
+                            <div class="cf_xp">
+                                <ul class="cf_paixu-2-1" style="margin-top: -30px;width: auto;margin-left: -10px;padding-top: 13px;" id="pagination-dom1">
+                                    <li>
+                                        <span onclick="refreshpage(1)" style="cursor: pointer; font-size: 14px">首页</span>
+                                        <a aria-label="Previous" style="cursor: pointer" onclick="refreshpage(0)"><img src="@urlPrefix/static/custom/images/caret-left.png"></a>
+                                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <li class="cf_paixu-2 li a">
+                                        <a onclick="refreshpage(1)" style="cursor: pointer">1</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="1" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(2)" style="cursor: pointer">2</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="2" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(3)" style="cursor: pointer">3</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="3" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(4)" style="cursor: pointer">4</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="4" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(5)" style="cursor: pointer">5</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="5" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(6)" style="cursor: pointer">6</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="6" />
+
+
+
+                                    <li>
+                                        <a onclick="refreshpage(7)" style="cursor: pointer">7</a>
+                                    </li>
+                                    <input type="hidden" id="currPage" value="7" />
+
+
+
+                                    <li>
+                                        <a aria-label="Next" style="cursor: pointer" onclick="refreshpage(2)"><img src="@urlPrefix/static/custom/images/caret-right.png"></a>
+                                        <span onclick="refreshpage(251)" style="cursor: pointer; font-size: 14px">尾页</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/16828">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                以<font color=red>人</font>为本深入开展思想政治工作
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井">钻井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井队">钻井队</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=油田">油田</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=党的建设">党的建设</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻工">钻工</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=吉林油田">吉林油田</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            在任何情况下都不松懈党的建设工作，是吉林油田数十年不变的传统。年年有新内容新形式，求真务实，生动活泼，讲求效果是油田这项工作开展的真实写照，也是钻井系统党建工作的真实写照。1989年钻井公司通过开展“创先争优” — —创建先进党支部、争做优秀党员活动使基层党支部的战斗堡垒作用和党员的先锋模范作用得到了更充分发挥。特别是钻井公司开展的党员佩戴“共产党员”徽章活动更是令<font color=red>人</font>耳目一新。1988年经总公司和吉林省企业升级联合考核组考核， 10项指标全部达到国家二级企业标准，油田获得了国务院企业管理委员会颁发的国家二级企业证书，钻井公司在油田的考核中考核内容全部达标。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/7872">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                项目管理者应该具备的素质
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=语言流利">语言流利</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=项目经理">项目经理</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=协调">协调</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=海外项目">海外项目</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=魅力">魅力</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=语言">语言</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            通俗的讲，作好海外项目经理主要应具备“会说话” 、 “能办事” 、 “人缘好”等三个方面。“会说话”是要具备很强的语言表达能力，不仅仅是语言流利。“人缘好”指具有个人魅力，虽然别人服从你，但也别<font color=red>让人</font>讨厌。任何一个项目，不论项目经理多么辛苦，最终项目亏损，该项目就是一个失败的项目，该项目经理就很难说是一个好的项目经理。项目管理不是政府管理，没有比别人高的地方、没有解决他们解决不了的问题的能力，项目经理就很难实现预期的管理和领导，就很难实现预期的协调。十足的个人魅力就可以做到你工作放心、同事工作舒心、整个作业队伍更有信心。个人的魅力可以创造出轻松而高效的工作环境。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/7850">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                适应环境，把握未来，调整自己
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=孟子">孟子</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=思维方式">思维方式</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=孟母">孟母</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=工作">工作</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=西方国家">西方国家</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=生活">生活</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            在参加工商管理培训班时，一个教授给我们讲了做人做事的“三句话” ，很有哲理，很有启发，对我们在工作、生活、学习中养成好的思维方式和行为方式很有帮助。比如长期在西方国家工作生活的<font color=red>人</font>的思维方式、处世原则和价值观就和长期在阿拉伯国家工作生活的<font color=red>人</font>不同，阿拉伯国家有些<font color=red>人</font>的习惯是不守时，说话不算数，不诚信，时间久了，你就适应并学会了上述不良习惯。有些事情在看似死胡同的时候如果能反过来想一想，可能会出现新的机遇。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/16819">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                省吃俭用买大件
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井">钻井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻机">钻机</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=油田">油田</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=油田管理局">油田管理局</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=生产">生产</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井队">钻井队</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            吉林油田白手起家，从零开始，近20年来，钻井设备一直很差，陈旧的无力更新，紧缺的没钱购买，钻井生产一直在对陈旧设备的敲敲打打、维修保养中进行。“自力更生，艰苦奋斗”在吉林石油钻井是真实的生命线。面对日渐繁重的钻井开发和勘探任务，加强在用设备的管理和维修保养工作，几乎成了维持钻井生产唯一的保证手段。到了1984年，机修站已经有了7200平方米的检修厂房和车间，机修站的干部职工人数达到了926<font color=red>人</font>，其中机械工程师、助理工程师12<font color=red>人</font>，维修设备达到352台，机加能力20吨， 3.5万件套，有了完整的维修系统和一整套机动设备管理维修制度。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/4755">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                到巴基斯坦打井
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=巴基斯坦">巴基斯坦</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井">钻井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=吐哈">吐哈</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=河谷">河谷</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=集装箱">集装箱</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=中巴公路">中巴公路</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            2002年4月14日，吐哈钻井公司得到长城钻井公司提供的消息：国际OPI公司在巴基斯坦承包的石油勘探开发项目招标钻井工程。吐哈钻井公司上下联动，四处奔走，积极投标。5月16日， 50201钻井队顺利中标钻井项目。至此，价值近600万元、在深山幽谷中失落了多日的集装箱，被巴基斯坦军民奋力打捞上来。就在井队拆卸井架中， OPI公司向50201队下达了第二口井的钻探任务，并主动提出优惠待遇，请求吐哈钻井公司再派一支井队进入巴基斯坦钻探石油。吐哈70531钻井队带着指挥部、钻井公司的嘱托，带着钻井<font color=red>人</font>的期望，踏上了海外作业的征程。吐哈钻井<font color=red>人</font>感到，在这里干活挺有信心。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/5853">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                进入青海
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=固井">固井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=吐哈钻井">吐哈钻井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=井固井">井固井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=吐哈">吐哈</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=完井">完井</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=口井">口井</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            地处柴达木盆地的青海油田，人文生存环境恶劣，但自然矿产颇丰，具有良好的油气勘探开发前景。为拓展社会市场空间，吐哈钻井将目光瞄向青海油田，固井引路、钻井跟进的战术相继奏效。1995年夏天，青海油田所钻的一批开发井因固井质量不太好影响了原油上产，为此，青海油田勘探公司派出项目副经理燕为喜带队，一行3<font color=red>人</font>来到近邻的玉门油田考察吐哈固井实力，并主动与吐哈钻井玉门分公司接洽说： “青海有井固，你们去不去？2002年，青海油田整顿生产经营和市场秩序，全面清理了外部施工作业队伍，惟独吐哈钻井依然如故地留驻在那里钻井。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/2474">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                关井时能否<font color=red>让</font>钻具坐在转盘面上关防喷器？
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2016.08.24</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=井口">井口</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=这会">这会</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=不严">不严</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=居中">居中</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=关闭">关闭</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            答：不能，这会造成钻具与防喷器不能相对居中而造成井口关闭不严。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/16845">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                以<font color=red>人</font>为本塑标兵群体树企业形象
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=企业文化">企业文化</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井系统">钻井系统</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井">钻井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=服务公司">服务公司</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=生产经营">生产经营</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=中国石油天然气集团公司">中国石油天然气集团公司</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            1998年以来，钻井系统各单位在不断深化企业内部改革的同时，企业文化建设也与之同步协调发展。各单位在职工队伍建设中紧密联系生产经营实际，深入开展了以职工群众为主体，群体共识和行为为基础，以开展爱国主义、集体主义、社会主义，世界观、人生观、价值观，社会道德、职业道德、家庭美德和有理想、有道德、有文化、有纪律教育为基本内容的企业文化创建活动。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/10777">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                以<font color=red>人</font>为本增强企业核心竞争力
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=教育">教育</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井">钻井</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=四个教育">四个教育</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=选拔培养">选拔培养</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=吐哈">吐哈</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=钻井系统">钻井系统</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            钻井系统会战和搏击市场的历程，使吐哈<font color=red>人</font>受到深刻启迪：落实新体制、新技术，关键在于<font color=red>人</font>的素质，只有高素质的人才，才能将“两新” （新体制、新技术）转化为“两高” （高水平、高效益） 。因此，吐哈钻井一直把提高全员素质、注重人才培养，作为增加企业核心竞争力的根本措施来抓。2000年，参加钻井继续教育工程21<font color=red>人</font>、适应性培训466<font color=red>人</font>，出国队伍取证培训260<font color=red>人</font>，专业取证50<font color=red>人</font>，特种作业人员取证81<font color=red>人</font>，共计994<font color=red>人</font>，占钻井公司职工总数的37.1% 。全员劳动生产率2000年比1996年增长了4.68倍。
+                        </div>
+                    </div>
+
+                    <div class="cf_ln">
+                        <div class="cf_ln-1">
+                            <a target="_blank" href="topic/7378">
+
+                                <span style="color:#F0C44E">[知识点]</span>
+
+
+
+
+                                使用喷灯无<font color=red>人</font>监护
+                            </a>
+                        </div>
+                        <div class="cf_ln-2">
+                            <table>
+                                <tr>
+                                    <td width="150"><span style="font-weight: 600">发布时间：</span>2017.01.10</td>
+                                    <td width="645">
+                                        <span style="font-weight: 600">关键词：</span>
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=图例">图例</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=隐患">隐患</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=监护">监护</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=风险">风险</a>、
+
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=喷灯">喷灯</a>、
+
+
+
+
+
+                                        <a href="/search?t=0&p=1&w=喷油嘴">喷油嘴</a>
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="cf_ln-4">
+                            使用喷灯时若无<font color=red>人</font>监护，容易造成人员伤害、财产损失事故/事件。动火作业要严管，许可监护是关键。
+                        </div>
+                    </div>
+
+
+                    <!-- 分页 -->
+                    <div class="cf_xp">
+                        <div class="cf_paixu-2-2">
+                            <input type="hidden" value="10" id="pageSize" />
+                            共2506条记录，共251页，当前第<span style="color: red">1</span>页。
+                        </div>
+                        <div class="cf_xp">
+                            <ul class="cf_paixu-2-1" style="margin-top: 0px;width: auto;" id="pagination-dom">
+                                <li>
+                                    <span onclick="refreshpage(1)" style="cursor: pointer; font-size: 14px">首页</span>
+                                    <a aria-label="Previous" style="cursor: pointer" onclick="refreshpage(0)"><img src="@urlPrefix/static/custom/images/caret-left.png"></a>
+                                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <li class="cf_paixu-2 li a">
+                                    <a onclick="refreshpage(1)" style="cursor: pointer">1</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="1" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(2)" style="cursor: pointer">2</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="2" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(3)" style="cursor: pointer">3</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="3" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(4)" style="cursor: pointer">4</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="4" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(5)" style="cursor: pointer">5</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="5" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(6)" style="cursor: pointer">6</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="6" />
+
+
+
+                                <li>
+                                    <a onclick="refreshpage(7)" style="cursor: pointer">7</a>
+                                </li>
+                                <input type="hidden" id="currPage" value="7" />
+
+
+
+                                <li>
+                                    <a aria-label="Next" style="cursor: pointer" onclick="refreshpage(2)"><img src="@urlPrefix/static/custom/images/caret-right.png"></a>
+                                    <span onclick="refreshpage(251)" style="cursor: pointer; font-size: 14px">尾页</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!----画面存储区域--------------------------------->
+
+    <input type="hidden" id="pattern" value="" />
+    <input type="hidden" id="top" value="0" />
+    <input type="hidden" id="pageN" value="1" />
+    <input type="hidden" id="pageT" value="251" />
+    <input type="hidden" id="word" value="让人" />
+    <input type="hidden" id="category" value="" />
+    <input type="hidden" id="source" value="" />
+    <input type="hidden" id="order" value="" />
+    <input type="hidden" id="fath" value="" />
+    <input type="hidden" id="iTp" value="" />
+    <input type="hidden" id="adv1" value="" />
+    <input type="hidden" id="adv2" value="" />
+    <input type="hidden" id="adv3" value="" />
+    <input type="hidden" id="adv4" value="" />
+    <input type="hidden" id="all" value="0" />
+
+
+
+    <div class="cf_foot">
+        <div class="cf_foot-1">
+            <div class="cf_foot-z">Copyright 石油工业出版社 2010-2015 All Rights Reserved</div>
+            <div class="cf_foot-y">地址：北京市安定门外安华里二区一号楼    京ICP备0800427号-1</div>
+        </div>
+    </div>
+
+
+</body>
+</html>

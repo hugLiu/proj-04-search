@@ -1,0 +1,57 @@
+﻿<div class="yxj_nav">
+    <div class="boxcenter" style="margin:0 auto;overflow:visible;">
+
+        @*<ul>
+                <li><a href="http://www.petropub.com.cn">石油社官网</a></li>
+                <li><span>|</span></li>
+                <li><a id="store" href="http://store.yooso.com.cn">中油书店</a></li>
+
+
+                <li onmouseover="b1.style.display='block'" onmouseout="b1.style.display='none'">
+                    <a href="javascript:void(0);">石油知识库</a>
+                    <div class="gf_xs" id="b1" style="display:none">
+                        <div class="gf_xs1">
+                            <h3><a id="zuanjing" href="http://zuanjing.yooso.com.cn">钻井知识库</a></h3>
+                            <h3><a id="kantan" href="http://kantan.yooso.com.cn/">勘探知识库</a></h3>
+                        </div>
+                    </div>
+                </li>
+                <li><a id="baike" href="http://baike.yooso.com.cn/">石油百科</a></li>
+                <div class="yxj_cd" style="float:left;">
+                    <li><a id="biaozhun" href="http://bz.yooso.com.cn">石油标准</a></li>
+                    <li><a id="qikan" href="http://www.petroj.cn/">石油期刊</a></li>
+                    <li><a id="fanyi" href="http://fanyi.yooso.com.cn">石油翻译</a></li>
+                    <li><span>|</span></li>
+                </div>
+            </ul>*@
+        @*<a id="www" href="http://www.yooso.com.cn">
+                <img class="yxj_logo" src="@urlPrefix/static/custom/images/yxj_logo2.png" />
+            </a>*@
+        <div class="yxj_admin ">
+
+            @{
+                if (HasLogin())
+                {
+                    <h1 ><a style="color:white" href="#;">@UserName</a></h1>
+                    <h1 ><a style="color:white" href="/webappaccount/logout">退出</a>
+                    </h1>
+                }
+                else
+                {
+                    <h1 style="color:white"><a href="#;" onclick="login()">登录</a></h1>
+                }
+            }
+           
+        </div>
+    </div>
+</div>
+<script>
+    function login() {
+        var curUrl = location.pathname;
+        var returnUrl = location.href;
+        if (curUrl.toLowerCase() == "/webappaccount/login") {
+            returnUrl = "/webapp/searchindex";
+        }
+        location.href = "/WebAppAccount/Login?returnUrl=" + returnUrl;
+    }
+</script>

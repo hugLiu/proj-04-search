@@ -1,0 +1,123 @@
+﻿@model Jurassic.AppCenter.Models.LoginModel
+@{
+    ViewBag.Title = Html.Str("S_L_Title_Login");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/webapp/Signin.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <style>.mini-checkbox-check {
+    vertical-align: text-top;
+}
+    </style>
+    <div class="container">
+        <div class="login">
+            <div class="logintitle">
+                @Html.Str("S_L_Label_Title")
+            </div>
+            <div class="loginFrom">
+                @*@Html.Partial("_Tips")*@
+                <div class="form_username" for="username$text">
+                    <input style="width: 100%" id="UserName" name="UserName" errormode="icon" onvalidation="onUserNameValidation" class="mini-textbox"
+                           required="true" requirederrortext="@Html.Str("S_L_Info_AccountEmpty")" />
+                </div>
+                <div id="UserName_error" class="showTips">
+                    <div class="warning"></div>
+                </div>
+                <div class="form_password " for="pwd$text">
+                    <input style="width: 100%" id="Password" name="Password" errormode="icon" onvalidation="onPwdValidation" class="mini-password"
+                           required="true" vtype="minLength:5" requirederrortext="@Html.Str("S_L_Info_PasswordEmpty")" minlengtherrortext="@Html.Str("S_L_Info_Less5String")" />
+                </div>
+                <div id="Password_error" class="showTips"></div>
+                <div class="login_RememberMe clear">
+                    <input type="hidden" value="false" name="RememberMe" id="RememberMe" />
+                    <div id="chkRememberMe" class="mini-checkbox" text="@Html.Str("S_L_CheckBox_Remember")"></div>
+                    <a href="@Url.Action("ForgotPassword")" class="frame-submit" style="float: right;">@Html.Str("S_L_Link_Forget")</a>
+                </div>
+                <div class="mini-button frame-submit frame-default">
+                    <div class="loginButton-text"> @Html.Str("S_L_Button_Login")</div>
+                </div>
+                <div class="language">
+                    <div class="en_zh">
+                        <a class="mini-menubutton " menu="#langMenu">@System.Threading.Thread.CurrentThread.CurrentCulture.NativeName.Split('(')[0]</a>
+                        <ul class="mini-menu" id="langMenu" style="display: none;">
+                            @foreach (var langKey in ResHelper.GetUsedCultureNames())
+                            {
+                                var culture = new System.Globalization.CultureInfo(langKey);
+                                <li>@Html.ActionLink(culture.NativeName, "Login", new { culture = langKey })</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            @Html.Str("S_C_Label_Copyright")
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    mini.parse();
+    var loginText = "@Html.Str("S_L_Button_Login")";
+    var loging = "@Html.Str("S_L_Info_Logging")...";
+    var forgotPassword = "@Html.Str("S_L_Link_Forget")";
+
+    $.regButton({
+        text: loginText,
+        beforeSubmit: function (ajax) {
+            $('#RememberMe').val(mini.get('#chkRememberMe').getValue());
+        },
+        beforeAjax: function (ajax) {
+            toastr["info"](loging);
+        },
+        afterSubmit: function (data) {
+            if (data.Type !== "success") {
+            } else {
+                if (data.ReturnValue.User.RoleIds.length === 0) {
+                    data.ReturnValue.Url = "/WebApp";
+                } else {
+                    data.ReturnValue.Url = "/Home";
+                }
+            }
+        }
+    });
+
+    $.regButton({
+        text: forgotPassword,
+        noSubmit: function () {
+            var userName = mini.get("#UserName").getValue();
+            if (!userName) {
+                toastr["warning"]("@Html.Str("S_L_Info_InputName")");
+                return;
+            }
+            location.href = this.href + "?userName=" + userName;
+        }
+    });
+
+
+    ///////////////////提示验证错误信息/////////////////////
+    function updateError(e) {
+        var id = e.sender.name + "_error";
+        if (e.errorText != "")
+            toastr["error"](e.errorText, "@Html.Str("S_L_Info_Error")");
+        //var el = document.getElementById(id);
+        //if (el) {
+        //    el.innerHTML = e.errorText;
+        //}
+    }
+
+    function onUserNameValidation(e) {
+        updateError(e);
+    }
+
+    function onPwdValidation(e) {
+        updateError(e);
+    }
+
+    if (this.location.href != top.location.href) {
+        top.location = this.location;
+    }
+</script>

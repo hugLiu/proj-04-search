@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.SooilApp", "Jurassic.So.SooilApp\Jurassic.So.SooilApp.csproj", "{9DC98131-010F-4E1C-8357-107551C7129C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.Application", "Jurassic.So.Application\Jurassic.So.Application.csproj", "{13CD6875-8CBF-4703-9621-F8F8AB2DDE88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.Core", "Jurassic.So.Core\Jurassic.So.Core.csproj", "{20ED1E01-B987-43B7-9562-1B9E05064F15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.EntityFramework", "Jurassic.So.EntityFramework\Jurassic.So.EntityFramework.csproj", "{CC200028-8F32-4A9E-BD73-45C983DD2B80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.Domain", "Jurassic.So.Domain\Jurassic.So.Domain.csproj", "{6FA9B3B5-720C-4B39-A29A-E6E195ACE199}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.Search.ES", "Jurassic.So.Search.ES\Jurassic.So.Search.ES.csproj", "{1A814943-8536-4C0A-9900-4D65CA53DF10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.Oracle", "Jurassic.So.Oracle\Jurassic.So.Oracle.csproj", "{ACFAF953-14FC-4D32-A552-CAB289F3396D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.doc", "01.doc", "{5146222B-9E56-4636-BE9E-BA987C8CFCD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据库", "数据库", "{1FD27BE3-E631-4F4F-8119-44FF364ABB14}"
+	ProjectSection(SolutionItems) = preProject
+		..\01-doc\数据库\CreateUser.txt = ..\01-doc\数据库\CreateUser.txt
+		..\01-doc\数据库\updatetov3.txt = ..\01-doc\数据库\updatetov3.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DC98131-010F-4E1C-8357-107551C7129C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DC98131-010F-4E1C-8357-107551C7129C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DC98131-010F-4E1C-8357-107551C7129C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DC98131-010F-4E1C-8357-107551C7129C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13CD6875-8CBF-4703-9621-F8F8AB2DDE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13CD6875-8CBF-4703-9621-F8F8AB2DDE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13CD6875-8CBF-4703-9621-F8F8AB2DDE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13CD6875-8CBF-4703-9621-F8F8AB2DDE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20ED1E01-B987-43B7-9562-1B9E05064F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20ED1E01-B987-43B7-9562-1B9E05064F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20ED1E01-B987-43B7-9562-1B9E05064F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20ED1E01-B987-43B7-9562-1B9E05064F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC200028-8F32-4A9E-BD73-45C983DD2B80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC200028-8F32-4A9E-BD73-45C983DD2B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC200028-8F32-4A9E-BD73-45C983DD2B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC200028-8F32-4A9E-BD73-45C983DD2B80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA9B3B5-720C-4B39-A29A-E6E195ACE199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA9B3B5-720C-4B39-A29A-E6E195ACE199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA9B3B5-720C-4B39-A29A-E6E195ACE199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA9B3B5-720C-4B39-A29A-E6E195ACE199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A814943-8536-4C0A-9900-4D65CA53DF10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A814943-8536-4C0A-9900-4D65CA53DF10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A814943-8536-4C0A-9900-4D65CA53DF10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A814943-8536-4C0A-9900-4D65CA53DF10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACFAF953-14FC-4D32-A552-CAB289F3396D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACFAF953-14FC-4D32-A552-CAB289F3396D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACFAF953-14FC-4D32-A552-CAB289F3396D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFAF953-14FC-4D32-A552-CAB289F3396D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1FD27BE3-E631-4F4F-8119-44FF364ABB14} = {5146222B-9E56-4636-BE9E-BA987C8CFCD2}
+	EndGlobalSection
+EndGlobal

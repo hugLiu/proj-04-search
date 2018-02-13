@@ -1,0 +1,331 @@
+﻿@{
+    var baseController = this.ViewContext.Controller as BaseController;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>搜索列表配置</title>
+
+
+    <script src="~/scripts/boot.js" type="text/javascript"></script>
+
+    <link href="@Url.Content("~/content/theme/"+ baseController.UserConfig.Theme +"/main.css")" id="userConfigTheme" rel="stylesheet" type="text/css" />
+    <link href="~/Content/global.css" rel="stylesheet" type="text/css" />
+    <script src="@Url.Action("GetAllJsRes", "Res", new { area = "AppCenter" })" type="text/javascript"></script>
+    <script src="~/scripts/webframe-1.0.js" type="text/javascript"></script>
+    <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                width: 100%;
+                height: 100%;
+            }
+          .filesView
+    {
+        padding:10px;
+    }
+
+    .file
+    {
+
+        width:90px;
+        height:88px;
+        margin-right:10px;
+        margin-bottom:10px;
+        border:solid 1px white;
+        display:inline;
+        float:left;
+        text-align:center;
+        text-decoration:none;
+        outline:none;
+    }
+    .file-image
+    {
+        width:70px;
+        height:70px;
+        background:url(filetype/file.png) no-repeat 50% 50%;
+        border:0;
+        display:block;
+        margin:auto;
+    }
+   
+
+    .file-text
+    {
+        text-align:center;
+        color:#2E3139;
+        line-height:14px;
+        font-size:9pt;
+        font-family:Tahoma,Verdana,宋体;
+    }
+
+    a:hover.file
+    {
+        border:1px solid #A9ACB5;
+        background:#dde6fe;
+    }
+    .file-selected, a:hover.file-selected
+    {
+        border:1px solid #A9ACB5;
+        background:#EBEDF2;
+    }
+    </style>
+    <link href="filemanager.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="mini-splitter frame-fit nospacing" style="width:100%;">
+        <div size="40%" showcollapsebutton="true">
+            <div style="text-align:right;">
+                <label style="display:inline-table;">元数据</label>
+                <input class="mini-combobox" id="materialCategoryStandard" style="display:inline-table;" textfield="Name" valuefield="Id" onvaluechanged="onStandardChanged" />
+            </div>
+            <div class="mini-toolbar" style="border-top:1px solid #d3d3d3;">
+                <a class="mini-button" iconcls="icon-new-add" plain="true" id="addCategoryBtn" onclick="addCategory">新增</a>
+                <a class="mini-button" iconcls="icon-new-edit" plain="true" id="editCategoryBtn" onclick="editCategory">编辑</a>
+                <a class="mini-button" iconcls="icon-new-delete" plain="true" id="deleteCategoryBtn" onclick="deleteCategory">删除</a>
+
+            </div>
+            <div class="mini-fit">
+
+                <div id="materialCategoryTree" class="mini-treegrid" style="width:100%;height:100%;" showtreeicon="true"
+                     treecolumn="code" idfield="id" parentfield="pid" resultastree="false" allowdrag="true" allowdrop="true" allowleafdropin="true">
+                    <div property="columns">
+                        <div type="indexcolumn"></div>
+                        <div name="code" field="Code">字段名</div>
+                        <div field="Name">字段路径</div>
+                        <div field="Name">字段title</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div showcollapsebutton="true">
+            <div class="mini-toolbar">
+
+                @*<span class="separator"></span>*@
+                <a class="mini-button" iconcls="icon-new-add" plain="true" id="addAttrBtn" onclick="addAttr()">自定义模板</a>
+                <a class="mini-button" iconcls="icon-new-delete" plain="true" id="deleteAttrBtn" onclick="deleteAttr()">删除模板</a>
+            </div>
+            <div class="mini-fit">
+                <div id="filesDataView" style="width:100%;height:100%;overflow:auto;display:none;">
+                    <div id="filesView" class="filesView">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    <script type="text/javascript">
+    mini.parse();
+
+    //绑定物资分类树数据
+   // initialize();
+    function initialize() {
+
+        var url = "@Url.Action("GetMaterialCategoryStandard")";
+        $.ajax({
+            url: url,
+            success: function (list) {
+                var data = mini.decode(list);
+                materialCategoryStandard.setData(data);
+                if (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].IsBasicStandard === true) {
+                            materialCategoryStandard.select(i);
+                            materialCategoryStandard.doValueChanged();
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    function onStandardChanged(e) {
+        categoryStandardId = e.value;
+
+        var url = "@Url.Action("GetMaterialCategoryByStandardIdAndId")";
+        materialCategoryTree.setUrl(url);
+        //取消遮罩：
+        mini.unmask(document.getElementsByTagName('form')[0]);
+
+    }
+
+    materialCategoryTree.on("beforeload", function (e) {
+        var node = e.node;
+        var params = e.params;  //参数对象
+        params.id = node.id;
+        params.fullCode = node.FullCode;
+        params.standardId = categoryStandardId;
+    });
+
+
+    assistantAttrGrid.on("select", function (e) {
+        deleteAttrBtn.enable();
+    });
+    assistantAttrGrid.on("deselect", function (e) {
+        deleteAttrBtn.disable();
+    });
+    assistantAttrGrid.on("update", function (e) {
+        var sender = e.sender;
+        var node = materialCategoryTree.getSelectedNode();
+        if (node) {
+            addAttrBtn.enable();
+        } else {
+            addAttrBtn.disable();
+        }
+        var attrData = sender.getSelected();
+        if (attrData) {
+            deleteAttrBtn.enable();
+        } else {
+            deleteAttrBtn.disable();
+        }
+    });
+
+
+
+    function onCheckBoxChanged(e) {
+        gridLoad();
+    }
+
+
+
+    function addCategory() {
+        var materialCategoryStandardValue = Number(materialCategoryStandard.getValue());
+        var url = "@Url.Action("MaterialCategoryEdit")?materialCategoryStandardId=" + materialCategoryStandardValue;
+        //var list = mini.clone(materialCategoryTree.getList());
+        var node = materialCategoryTree.getSelectedNode();
+
+        $.util.miniOpen(url, {
+            title: "添加",
+            width: 500,
+            height: 400,
+            data: { action: "add",nodeData: node }
+        }, addCategorySave);
+    }
+
+    function editCtegorySave(result) {
+        result.id = result.Id.toString();
+        result.pid = result.ParentId.toString();
+
+        if (result.ParentId == 0) {
+            materialCategoryTree.reload();
+        } else {
+            var parentNode = materialCategoryTree.getNode(result.pid);
+            materialCategoryTree.loadNode(parentNode);
+        }
+
+        var node = materialCategoryTree.getNode(result.id);
+        materialCategoryTree.selectNode(node);
+
+    }
+    function editCategory() {
+        var materialCategoryStandardValue = Number(materialCategoryStandard.getValue());
+        var node = materialCategoryTree.getSelectedNode();
+        //var list = mini.clone(materialCategoryTree.getList());//克隆很重要
+        var parentNode = null;
+        if (node) {
+            parentNode = materialCategoryTree.getNode(node.pid);
+        }
+        var url = "@Url.Action("MaterialCategoryEdit")?materialCategoryStandardId=" + materialCategoryStandardValue;
+        $.util.miniOpen(url, {
+            title: "编辑",
+            width: 500,
+            height: 400,
+            data: { action: "edit",parentNode:parentNode, nodeData: node }
+        }, editCtegorySave);
+    }
+    function deleteCategory() {
+        var node = materialCategoryTree.getSelectedNode();
+
+        var gridData = assistantAttrGrid.getData();
+        var gridIds = [];
+        for (var i = 0; i < gridData.length; i++) {
+            var item = gridData[i];
+            if (item.Id != 0) {
+                gridIds.push(item.Id);
+            }
+        }
+
+
+    }
+
+    function saveAttr(data) {
+        var isSuccess = false;
+        if (data) {
+            var node = materialCategoryTree.getSelectedNode();
+            $.ajax({
+                url: "@Url.Action("SaveAssistantAttr")?id=" + node.Id,
+                type: "post",
+                async: false,
+                data: { data: mini.encode(data) },
+                success: function (data) {
+                    isSuccess = true;
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $.util.showError(jqXHR);
+                    isSuccess = false;
+                }
+            });
+        }
+
+        return isSuccess;
+    }
+
+    function addAttrSave(result) {
+        assistantAttrGrid.reload();
+    }
+
+    function addAttr() {
+        var node = materialCategoryTree.getSelectedNode();
+
+        var url = "@Url.Action("Index", "AssistantAttributeLookup")?id=" + node.Id;
+        //var data = assistantAttrGrid.getData();
+
+        $.util.miniOpen(url, {
+            title: "electAssistantAttr",
+            width: 900,
+            height: 496
+        }, addAttrSave);
+    }
+
+    function deleteAttr() {
+        var rows = assistantAttrGrid.getSelecteds();
+        if (rows.length > 0) {
+            mini.confirm("确定删除记录","系统提示",
+                function (action) {
+                    if (action == "ok") {
+                        var rowArr = [];
+                        for (var i = 0; i < rows.length; i++) {
+                            rowArr.push(rows[i].Id);
+                        }
+                        var o = mini.encode(rowArr);
+                        //grid1.loading("操作中，请稍后......");
+                        $.ajax({
+                            url: "@Url.Action("DeleteAssistantAttr")?ids=" + o,
+                            type: "post",
+                            success: function (message) {
+                                if (message.Type == "success") {
+                                    assistantAttrGrid.reload();
+                                }
+                                showTips(message);
+
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                $.util.showError(jqXHR);
+                            }
+                        });
+                    }
+                });
+        } else {
+            mini.alert("请选择记录","系统提示");
+        }
+    }
+
+    </script>
+

@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Setting_AdvancedSearch";
+}
+@*<script src="~/scripts/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="~/scripts/knockout-3.0.0.js" type="text/javascript"></script>*@
+<style>
+    #ViewBag input, select {
+        margin-bottom: 5px;
+        width: 60%;
+    }
+</style>
+
+<div id="ViewBag">
+    <div>
+        <table>
+            <tr>
+                <td><b>搜索结果：</b></td>
+                <td>包含以下全部关键词</td>
+                <td><input id="includeAll" data-bind="value:includeAllInput" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>包含以下的完整关键词</td>
+                <td><input id="includeWhole" data-bind="value:includeWholeInput" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>包含以下任意一个关键词</td>
+                <td><input id="includeAny" data-bind="value:includeAnyInput" /></td>
+            </tr>
+            <tr style="border-bottom: 1px solid grey">
+                <td></td>
+                <td>不包括以下关键词</td>
+                <td><input id="notIncludeAny" data-bind="value:notIncludeAnylInput" /></td>
+            </tr>
+            <tr>
+                <td><b>时间:</b></td>
+                <td>限定要搜索网页的时间是</td>
+                <td>
+                    <select id="timeLimited" data-bind="options: timeLimitedOptions,optionsText:'text',value:selectedTime"></select>
+                </td>
+            </tr>
+            <tr>
+                <td><b>文档格式：</b></td>
+                <td>搜索成果的格式是</td>
+                <td>
+                    <select id="formatLimited" data-bind="options: formatLimitedOptions,optionsText:'text',value:selectedFormat"></select>
+                </td>
+            </tr>
+            <tr>
+                <td><b>关键词位置：</b></td>
+                <td>查询关键词位于</td>
+                <td>
+                    <select id="searchPosition" data-bind="options: searchPositionOptions,optionsText:'text',value:selectedPosition"></select>
+                </td>
+            </tr>
+            <tr>
+                <td><b>搜索数据源：</b></td>
+                <td>限定要搜索指定的数据源是</td>
+                <td>
+                    <select id="dataSource" data-bind="options: dataSourceOptions,optionsText:'text',value:selectedDataSource"></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //后台数据绑定到自定义模型
+    var timeLimitedOptions = [
+    { "text": "@Html.Str("Sooil_TimeFilter1")" },
+    { "text": "@Html.Str("Sooil_TimeFilter2")" },
+    { "text": "@Html.Str("Sooil_TimeFilter3")" },
+    { "text": "@Html.Str("Sooil_TimeFilter4")" },
+    { "text": "@Html.Str("Sooil_TimeFilter5")" }];
+    var formatLimitedOptions = [
+    { "key": "AllFormat", "text": "全部格式" },
+    { "key": "Data", "text": "数据" },
+    { "key": "Doc", "text": "文档" },
+    { "key": "Maps", "text": "图件" },
+    { "key": "Well Log", "text": "测井曲线" },
+    { "key": "Image", "text": "图片" },
+    { "key": "Video", "text": "视频" },
+    { "key": "Audio", "text": "音频" }];
+    var searchPositionOptions = [
+    { "key": "AllPosition", "text": "任意位置" },
+    { "key": "Title", "text": "标题" },
+    { "key": "Tag", "text": "标签" },
+    { "key": "FullText", "text": "全文" }];
+    var dataSourceOptions = [
+    { "text": "勘探开发项目知识管理平台" },
+    { "text": "综合成果文档管理系统" },
+    { "text": "数字文档中心" },
+    { "text": "地质油藏数据库" },
+    { "text": "数字井筒" },
+    { "text": "数字井史" },
+    { "text": "钻井试油作业数据库" },
+    { "text": "生产指挥系统" },
+    { "text": "勘探项目库" },
+    { "text": "开发项目库" },
+    { "text": "开发生产数据库" }];
+    var ViewModel = function () {
+
+        var self = {
+            /* 公有属性 */
+            selectedTime: ko.observable(timeLimitedOptions[0]),
+            selectedFormat: ko.observable(formatLimitedOptions[0]),
+            selectedPosition: ko.observable(searchPositionOptions[0]),
+            selectedDataSource: ko.observable(dataSourceOptions[0]),
+            //前台数据绑定
+            includeAllInput: ko.observable("盆地评价"),
+            includeWholeInput: ko.observable("油气藏"),
+            includeAnyInput: ko.observable("图"),
+            notIncludeAnylInput: ko.observable("石油"),
+            combineTerms: function () {
+                var combinedSentence= "&(" + String.join(",", includeAllInput.split()) + "," + includeWholeInput + ")"
+                    + "|(" + String.join(",", includeAnyInput.split()) + ")"
+                    + "-(" + String.join(",", notIncludeAnylInput.split()) + ")"
+                    + "Fields:(" + selectedPosition + ")";
+                alert(combinedSentence);
+            }
+        }
+        return self;
+    }();
+    ko.applyBindings(ViewModel);
+
+</script>
